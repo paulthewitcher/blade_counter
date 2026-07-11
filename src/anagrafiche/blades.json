@@ -16,7 +16,8 @@
       "attack": 60,
       "defence": 25,
       "stamina": 15
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "sword-dran",
@@ -25,7 +26,8 @@
       "attack": 55,
       "defence": 25,
       "stamina": 20
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "rock-golem",
@@ -34,7 +36,8 @@
       "attack": 30,
       "defence": 60,
       "stamina": 10
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "talon-ptera",
@@ -43,7 +46,8 @@
       "attack": 27,
       "defence": 23,
       "stamina": 50
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "roar-tyranno",
@@ -52,7 +56,8 @@
       "attack": 60,
       "defence": 28,
       "stamina": 12
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "keel-shark",
@@ -61,7 +66,8 @@
       "attack": 60,
       "defence": 25,
       "stamina": 15
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "reaper-incendio",
@@ -70,7 +76,8 @@
       "attack": 40,
       "defence": 20,
       "stamina": 40
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "wand-wizard",
@@ -79,7 +86,8 @@
       "attack": 15,
       "defence": 25,
       "stamina": 60
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "knife-shinobi",
@@ -88,7 +96,8 @@
       "attack": 23,
       "defence": 50,
       "stamina": 27
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "savage-bear",
@@ -97,7 +106,8 @@
       "attack": 17,
       "defence": 50,
       "stamina": 33
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "tackle-goat",
@@ -106,7 +116,8 @@
       "attack": 13,
       "defence": 65,
       "stamina": 22
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "cowl-sphinx",
@@ -115,7 +126,8 @@
       "attack": 35,
       "defence": 55,
       "stamina": 10
-    }
+    },
+    "image": "default.png"
   },
   {
     "id": "arrow-wizard",
@@ -124,6 +136,7 @@
       "attack": 15,
       "defence": 30,
       "stamina": 55
-    }
+    },
+    "image": "default.png"
   }
 ]
