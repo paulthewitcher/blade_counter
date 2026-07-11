@@ -10,6 +10,24 @@ const renderStats = (stats) =>
     </li>
   ));
 
+const getAssetUrl = (relativePath) => {
+  if (typeof document !== 'undefined' && document.baseURI) {
+    try {
+      return new URL(relativePath, document.baseURI).href;
+    } catch {
+      return `/${relativePath}`;
+    }
+  }
+  return `/${relativePath}`;
+};
+
+const resolveBladeImage = (blade) => {
+  if (!blade?.image) {
+    return getAssetUrl('blades/default.png');
+  }
+  return getAssetUrl(`blades/${blade.image}`);
+};
+
 export default function GarageSelector({
   selectedBladeId,
   selectedRatchetId,
@@ -18,6 +36,14 @@ export default function GarageSelector({
   onSelectRatchet,
   onSelectBit,
 }) {
+  const selectedBlade = blades.find((blade) => blade.id === selectedBladeId) || blades[0];
+  const bladeImage = resolveBladeImage(selectedBlade);
+
+  const handleImageError = (event) => {
+    event.currentTarget.onerror = null;
+    event.currentTarget.src = getAssetUrl('blades/default.png');
+  };
+
   return (
     <section style={{ marginBottom: '25px' }}>
       <h2 style={{ fontSize: '18px', marginBottom: '10px' }}>1. Anagrafica del Beyblade</h2>
@@ -28,6 +54,21 @@ export default function GarageSelector({
       <div style={{ display: 'grid', gap: '14px' }}>
         <div style={{ background: '#F8FAFC', borderRadius: '10px', padding: '12px' }}>
           <h3 style={{ margin: '0 0 8px 0', fontSize: '16px' }}>Blade</h3>
+          <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'center' }}>
+            <img
+              src={bladeImage}
+              alt={`Immagine di ${selectedBlade.name}`}
+              onError={handleImageError}
+              style={{
+                width: '100%',
+                maxWidth: '180px',
+                height: 'auto',
+                borderRadius: '16px',
+                objectFit: 'contain',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+              }}
+            />
+          </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
             {blades.map((blade) => (
               <button
@@ -48,7 +89,7 @@ export default function GarageSelector({
             ))}
           </div>
           <ul style={{ margin: '10px 0 0 18px', padding: 0 }}>
-            {renderStats(blades.find((blade) => blade.id === selectedBladeId)?.stats || blades[0].stats)}
+            {renderStats(selectedBlade.stats)}
           </ul>
         </div>
 

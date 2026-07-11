@@ -2,6 +2,7 @@
   {
     "id": "soar-phoenix-metal",
     "name": "soar phoenix metal",
+    "image": "roar_tyranno.png",
     "stats": {
       "attack": 65,
       "defence": 30,
