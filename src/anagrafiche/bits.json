@@ -1,0 +1,24 @@
+[
+  {
+    "id": "bit-standard",
+    "name": "Bit Standard",
+    "stats": {
+      "attack": 5,
+      "defence": 5,
+      "stamina": 6,
+      "dash": 4,
+      "burst": 3
+    }
+  },
+  {
+    "id": "bit-boost",
+    "name": "Bit Boost",
+    "stats": {
+      "attack": 7,
+      "defence": 4,
+      "stamina": 6,
+      "dash": 6,
+      "burst": 5
+    }
+  }
+]

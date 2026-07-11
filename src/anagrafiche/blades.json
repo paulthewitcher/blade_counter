@@ -1,0 +1,29 @@
+[
+  {
+    "id": "dran-sword-3-60f",
+    "name": "Dran Sword 3-60F",
+    "stats": {
+      "attack": 8,
+      "defence": 6,
+      "stamina": 7
+    }
+  },
+  {
+    "id": "hell-scythe-4-60t",
+    "name": "Hell Scythe 4-60T",
+    "stats": {
+      "attack": 9,
+      "defence": 5,
+      "stamina": 6
+    }
+  },
+  {
+    "id": "wizard-arrow-4-80b",
+    "name": "Wizard Arrow 4-80B",
+    "stats": {
+      "attack": 7,
+      "defence": 7,
+      "stamina": 8
+    }
+  }
+]
