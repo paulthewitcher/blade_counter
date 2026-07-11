@@ -1,0 +1,128 @@
+[
+  {
+    "id": "soar-phoenix-metal",
+    "name": "soar phoenix metal",
+    "stats": {
+      "attack": 65,
+      "defence": 30,
+      "stamina": 20
+    }
+  },
+  {
+    "id": "soar-phoenix",
+    "name": "soar phoenix",
+    "stats": {
+      "attack": 60,
+      "defence": 25,
+      "stamina": 15
+    }
+  },
+  {
+    "id": "sword-dran",
+    "name": "sword dran",
+    "stats": {
+      "attack": 55,
+      "defence": 25,
+      "stamina": 20
+    }
+  },
+  {
+    "id": "rock-golem",
+    "name": "rock golem",
+    "stats": {
+      "attack": 30,
+      "defence": 60,
+      "stamina": 10
+    }
+  },
+  {
+    "id": "talon-ptera",
+    "name": "talon ptera",
+    "stats": {
+      "attack": 27,
+      "defence": 23,
+      "stamina": 50
+    }
+  },
+  {
+    "id": "roar-tyranno",
+    "name": "Roar tyranno",
+    "stats": {
+      "attack": 60,
+      "defence": 28,
+      "stamina": 12
+    }
+  },
+  {
+    "id": "keel-shark",
+    "name": "Keel Shark",
+    "stats": {
+      "attack": 60,
+      "defence": 25,
+      "stamina": 15
+    }
+  },
+  {
+    "id": "reaper-incendio",
+    "name": "Reaper incendio",
+    "stats": {
+      "attack": 40,
+      "defence": 20,
+      "stamina": 40
+    }
+  },
+  {
+    "id": "wand-wizard",
+    "name": "Wand Wizard",
+    "stats": {
+      "attack": 15,
+      "defence": 25,
+      "stamina": 60
+    }
+  },
+  {
+    "id": "knife-shinobi",
+    "name": "Knife Shinobi",
+    "stats": {
+      "attack": 23,
+      "defence": 50,
+      "stamina": 27
+    }
+  },
+  {
+    "id": "savage-bear",
+    "name": "Savage Bear",
+    "stats": {
+      "attack": 17,
+      "defence": 50,
+      "stamina": 33
+    }
+  },
+  {
+    "id": "tackle-goat",
+    "name": "Tackle Goat",
+    "stats": {
+      "attack": 13,
+      "defence": 65,
+      "stamina": 22
+    }
+  },
+  {
+    "id": "cowl-sphinx",
+    "name": "Cowl Sphinx",
+    "stats": {
+      "attack": 35,
+      "defence": 55,
+      "stamina": 10
+    }
+  },
+  {
+    "id": "arrow-wizard",
+    "name": "Arrow Wizard",
+    "stats": {
+      "attack": 15,
+      "defence": 30,
+      "stamina": 55
+    }
+  }
+]
