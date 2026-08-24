@@ -65,3 +65,21 @@ La base Vite è impostata su `/blade_counter/` per il repository `paulthewitcher
 2. Definire eventuali metadati non numerici in `properties`.
 3. Aggiungere inventory reale separata dal catalogo.
 4. Aggiungere migration dal vecchio `localStorage` quando stabilizziamo il nuovo schema.
+
+
+## GitHub Pages
+
+In GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+Il workflow viene eseguito quando fai push su `main`.
+Il percorso Vite viene calcolato automaticamente dal nome del repository GitHub.
+
+Per test locale:
+
+```bash
+npm ci
+npm run lint
+npm test
+npm run build
+npm run dev
+```
