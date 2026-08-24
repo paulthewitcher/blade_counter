@@ -72,7 +72,7 @@ La base Vite è impostata su `/blade_counter/` per il repository `paulthewitcher
 In GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
 Il workflow viene eseguito quando fai push su `main`.
-Il percorso Vite viene calcolato automaticamente dal nome del repository GitHub.
+Gli asset Vite sono relativi (`./`), quindi il progetto funziona anche quando GitHub Pages pubblica il repository sotto un sottopercorso.
 
 Per test locale:
 
