@@ -1,0 +1,67 @@
+# Blade Counter — v2 data-first rebuild
+
+Nuova base del progetto, pensata per ripartire dall'AS-IS con un modello dati flessibile.
+
+## Modello dati
+
+Esistono esattamente 4 tipi di parte:
+
+- `blade`
+- `ratchet`
+- `bit`
+- `lock_cip`
+
+Ogni parte può avere un numero arbitrario di statistiche numeriche in `stats`:
+
+```json
+"stats": {
+  "attack": 20,
+  "defense": 5,
+  "stamina": 8,
+  "height": 60,
+  "burst": 2
+}
+```
+
+Non esiste un elenco obbligatorio di stats. Durante l'assemblaggio, tutte le chiavi trovate vengono sommate. Le statistiche con totale uguale a zero non vengono mostrate nella preview del Garage.
+
+Le combo salvano solo gli ID delle parti:
+
+```json
+"parts": {
+  "blade": "dran_sword",
+  "ratchet": "3-60",
+  "bit": "F",
+  "lock_cip": "T"
+}
+```
+
+In questo modo aggiungere, rimuovere o modificare un pezzo nel catalogo non richiede di duplicare le stats nelle combo.
+
+## Avvio locale
+
+```bash
+npm ci
+npm run dev
+```
+
+## Verifica
+
+```bash
+npm run lint
+npm test
+npm run build
+```
+
+## GitHub Pages
+
+Il progetto usa GitHub Actions per build e deploy su Pages. In **Settings → Pages** imposta la source su **GitHub Actions**.
+
+La base Vite è impostata su `/blade_counter/` per il repository `paulthewitcher.github.io/blade_counter`.
+
+## Cosa portare avanti nel prossimo step
+
+1. Definire il catalogo completo dei pezzi.
+2. Definire eventuali metadati non numerici in `properties`.
+3. Aggiungere inventory reale separata dal catalogo.
+4. Aggiungere migration dal vecchio `localStorage` quando stabilizziamo il nuovo schema.
