@@ -46,5 +46,9 @@ export const loadAppData = () => {
 };
 
 export const saveAppData = (data) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeAppData(data)));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeAppData(data)));
+  } catch (error) {
+    console.warn('Unable to save app data', error);
+  }
 };

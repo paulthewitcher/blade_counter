@@ -1,44 +1,358 @@
 {
   "schemaVersion": 1,
   "systems": {
-    "BX": { "label": "Sistema BX", "slots": ["blade", "ratchet", "bit", "lock_cip"] },
-    "UX": { "label": "Sistema UX", "slots": ["blade", "ratchet", "bit", "lock_cip"] },
-    "CX": { "label": "Sistema CX", "slots": ["blade", "ratchet", "bit", "lock_cip"] }
+    "BX": {
+      "label": "Sistema BX",
+      "slots": [
+        "blade",
+        "ratchet",
+        "bit",
+        "lock_cip"
+      ]
+    },
+    "UX": {
+      "label": "Sistema UX",
+      "slots": [
+        "blade",
+        "ratchet",
+        "bit",
+        "lock_cip"
+      ]
+    },
+    "CX": {
+      "label": "Sistema CX",
+      "slots": [
+        "blade",
+        "ratchet",
+        "bit",
+        "lock_cip"
+      ]
+    }
   },
   "parts": {
     "blade": [
-      { "id": "roar_tyranno", "name": "Roar Tyranno", "image": "/parts/roar_tyranno.png", "system": "BX", "stats": { "attack": 12 }, "properties": { "spin_direction": "right", "type": "balance" } },
-      { "id": "scythe_incendio", "name": "Scythe Incendio", "image": "/parts/roar_tyranno.png", "system": "BX", "stats": { "stamina": 10 }, "properties": { "spin_direction": "right" } },
-      { "id": "dran_sword", "name": "Dran Sword", "image": "/parts/roar_tyranno.png", "system": "BX", "stats": { "attack": 20, "defense": 5 }, "properties": { "spin_direction": "right", "type": "attack" } },
-      { "id": "hell_scythe", "name": "Hell Scythe", "image": "/parts/roar_tyranno.png", "system": "BX", "stats": { "stamina": 12, "defense": 4 }, "properties": { "spin_direction": "right" } },
-      { "id": "wizard_arrow", "name": "Wizard Arrow", "image": "/parts/roar_tyranno.png", "system": "BX", "stats": { "defense": 14, "stamina": 8 }, "properties": { "spin_direction": "right" } },
-      { "id": "knight_shield", "name": "Knight Shield", "image": "/parts/roar_tyranno.png", "system": "BX", "stats": { "defense": 20 }, "properties": { "spin_direction": "right", "type": "defense" } },
-      { "id": "wizard_rod", "name": "Wizard Rod", "image": "/parts/roar_tyranno.png", "system": "BX", "stats": { "stamina": 20 }, "properties": { "spin_direction": "right", "type": "stamina" } },
-      { "id": "dran_buster", "name": "Dran Buster", "image": "/parts/roar_tyranno.png", "system": "UX", "stats": { "attack": 24 }, "properties": { "spin_direction": "right", "type": "attack" } }
+      {
+        "id": "roar_tyranno",
+        "name": "Roar Tyranno",
+        "image": "parts/roar_tyranno.png",
+        "system": "BX",
+        "stats": {
+          "attack": 12
+        },
+        "properties": {
+          "spin_direction": "right",
+          "type": "balance"
+        }
+      },
+      {
+        "id": "scythe_incendio",
+        "name": "Scythe Incendio",
+        "image": "parts/roar_tyranno.png",
+        "system": "BX",
+        "stats": {
+          "stamina": 10
+        },
+        "properties": {
+          "spin_direction": "right"
+        }
+      },
+      {
+        "id": "dran_sword",
+        "name": "Dran Sword",
+        "image": "parts/roar_tyranno.png",
+        "system": "BX",
+        "stats": {
+          "attack": 20,
+          "defense": 5
+        },
+        "properties": {
+          "spin_direction": "right",
+          "type": "attack"
+        }
+      },
+      {
+        "id": "hell_scythe",
+        "name": "Hell Scythe",
+        "image": "parts/roar_tyranno.png",
+        "system": "BX",
+        "stats": {
+          "stamina": 12,
+          "defense": 4
+        },
+        "properties": {
+          "spin_direction": "right"
+        }
+      },
+      {
+        "id": "wizard_arrow",
+        "name": "Wizard Arrow",
+        "image": "parts/roar_tyranno.png",
+        "system": "BX",
+        "stats": {
+          "defense": 14,
+          "stamina": 8
+        },
+        "properties": {
+          "spin_direction": "right"
+        }
+      },
+      {
+        "id": "knight_shield",
+        "name": "Knight Shield",
+        "image": "parts/roar_tyranno.png",
+        "system": "BX",
+        "stats": {
+          "defense": 20
+        },
+        "properties": {
+          "spin_direction": "right",
+          "type": "defense"
+        }
+      },
+      {
+        "id": "wizard_rod",
+        "name": "Wizard Rod",
+        "image": "parts/roar_tyranno.png",
+        "system": "BX",
+        "stats": {
+          "stamina": 20
+        },
+        "properties": {
+          "spin_direction": "right",
+          "type": "stamina"
+        }
+      },
+      {
+        "id": "dran_buster",
+        "name": "Dran Buster",
+        "image": "parts/roar_tyranno.png",
+        "system": "UX",
+        "stats": {
+          "attack": 24
+        },
+        "properties": {
+          "spin_direction": "right",
+          "type": "attack"
+        }
+      }
     ],
     "ratchet": [
-      { "id": "3-60", "name": "3-60", "image": "/parts/ratchet_3_60.png", "system": "BX", "stats": { "attack": 12, "height": 60 }, "properties": { "type": "balance" } },
-      { "id": "4-60", "name": "4-60", "image": "/parts/ratchet_3_60.png", "system": "BX", "stats": { "height": 60 } },
-      { "id": "9-60", "name": "9-60", "image": "/parts/ratchet_3_60.png", "system": "BX", "stats": { "defense": 6, "height": 60 } },
-      { "id": "1-60", "name": "1-60", "image": "/parts/ratchet_3_60.png", "system": "BX", "stats": { "attack": 4, "height": 60 } },
-      { "id": "5-60", "name": "5-60", "image": "/parts/ratchet_3_60.png", "system": "BX", "stats": { "defense": 4, "height": 60 } },
-      { "id": "3-80", "name": "3-80", "image": "/parts/ratchet_3_60.png", "system": "BX", "stats": { "height": 80 } }
+      {
+        "id": "3-60",
+        "name": "3-60",
+        "image": "parts/ratchet_3_60.png",
+        "system": "BX",
+        "stats": {
+          "attack": 12,
+          "height": 60
+        },
+        "properties": {
+          "type": "balance"
+        }
+      },
+      {
+        "id": "4-60",
+        "name": "4-60",
+        "image": "parts/ratchet_3_60.png",
+        "system": "BX",
+        "stats": {
+          "height": 60
+        }
+      },
+      {
+        "id": "9-60",
+        "name": "9-60",
+        "image": "parts/ratchet_3_60.png",
+        "system": "BX",
+        "stats": {
+          "defense": 6,
+          "height": 60
+        }
+      },
+      {
+        "id": "1-60",
+        "name": "1-60",
+        "image": "parts/ratchet_3_60.png",
+        "system": "BX",
+        "stats": {
+          "attack": 4,
+          "height": 60
+        }
+      },
+      {
+        "id": "5-60",
+        "name": "5-60",
+        "image": "parts/ratchet_3_60.png",
+        "system": "BX",
+        "stats": {
+          "defense": 4,
+          "height": 60
+        }
+      },
+      {
+        "id": "3-80",
+        "name": "3-80",
+        "image": "parts/ratchet_3_60.png",
+        "system": "BX",
+        "stats": {
+          "height": 80
+        }
+      }
     ],
     "bit": [
-      { "id": "B", "name": "Ball (B)", "image": "/parts/bit_ball.png", "system": "BX", "stats": { "defense": 10, "stamina": 20 }, "properties": { "type": "ball" } },
-      { "id": "R", "name": "Rush (R)", "image": "/parts/bit_ball.png", "system": "BX", "stats": { "attack": 10 }, "properties": { "type": "rush" } },
-      { "id": "GF", "name": "Gear Flat (GF)", "image": "/parts/bit_ball.png", "system": "UX", "stats": { "attack": 12, "burst": 2 }, "properties": { "type": "gear_flat" } },
-      { "id": "GN", "name": "Gear Needle (GN)", "image": "/parts/bit_ball.png", "system": "UX", "stats": { "defense": 8, "stamina": 8 }, "properties": { "type": "gear_needle" } },
-      { "id": "F", "name": "Flat (F)", "image": "/parts/bit_ball.png", "system": "BX", "stats": { "attack": 15 }, "properties": { "type": "flat" } },
-      { "id": "T", "name": "Taper (T)", "image": "/parts/bit_ball.png", "system": "BX", "stats": { "stamina": 8, "defense": 4 }, "properties": { "type": "taper" } },
-      { "id": "N", "name": "Needle (N)", "image": "/parts/bit_ball.png", "system": "BX", "stats": { "defense": 10 }, "properties": { "type": "needle" } },
-      { "id": "O", "name": "Orb (O)", "image": "/parts/bit_ball.png", "system": "BX", "stats": { "stamina": 14 }, "properties": { "type": "orb" } },
-      { "id": "H", "name": "Hexa (H)", "image": "/parts/bit_ball.png", "system": "BX", "stats": { "attack": 8, "defense": 6 }, "properties": { "type": "hexa" } }
+      {
+        "id": "B",
+        "name": "Ball (B)",
+        "image": "parts/bit_ball.png",
+        "system": "BX",
+        "stats": {
+          "defense": 10,
+          "stamina": 20
+        },
+        "properties": {
+          "type": "ball"
+        }
+      },
+      {
+        "id": "R",
+        "name": "Rush (R)",
+        "image": "parts/bit_ball.png",
+        "system": "BX",
+        "stats": {
+          "attack": 10
+        },
+        "properties": {
+          "type": "rush"
+        }
+      },
+      {
+        "id": "GF",
+        "name": "Gear Flat (GF)",
+        "image": "parts/bit_ball.png",
+        "system": "UX",
+        "stats": {
+          "attack": 12,
+          "burst": 2
+        },
+        "properties": {
+          "type": "gear_flat"
+        }
+      },
+      {
+        "id": "GN",
+        "name": "Gear Needle (GN)",
+        "image": "parts/bit_ball.png",
+        "system": "UX",
+        "stats": {
+          "defense": 8,
+          "stamina": 8
+        },
+        "properties": {
+          "type": "gear_needle"
+        }
+      },
+      {
+        "id": "F",
+        "name": "Flat (F)",
+        "image": "parts/bit_ball.png",
+        "system": "BX",
+        "stats": {
+          "attack": 15
+        },
+        "properties": {
+          "type": "flat"
+        }
+      },
+      {
+        "id": "T",
+        "name": "Taper (T)",
+        "image": "parts/bit_ball.png",
+        "system": "BX",
+        "stats": {
+          "stamina": 8,
+          "defense": 4
+        },
+        "properties": {
+          "type": "taper"
+        }
+      },
+      {
+        "id": "N",
+        "name": "Needle (N)",
+        "image": "parts/bit_ball.png",
+        "system": "BX",
+        "stats": {
+          "defense": 10
+        },
+        "properties": {
+          "type": "needle"
+        }
+      },
+      {
+        "id": "O",
+        "name": "Orb (O)",
+        "image": "parts/bit_ball.png",
+        "system": "BX",
+        "stats": {
+          "stamina": 14
+        },
+        "properties": {
+          "type": "orb"
+        }
+      },
+      {
+        "id": "H",
+        "name": "Hexa (H)",
+        "image": "parts/bit_ball.png",
+        "system": "BX",
+        "stats": {
+          "attack": 8,
+          "defense": 6
+        },
+        "properties": {
+          "type": "hexa"
+        }
+      }
     ],
     "lock_cip": [
-      { "id": "T", "name": "Twin Layer (T)", "image": "/parts/sub_twin.png", "system": "UX", "stats": { "defense": 5, "burst": 3 }, "properties": { "type": "twin" } },
-      { "id": "C", "name": "Core Ring (C)", "image": "/parts/sub_twin.png", "system": "UX", "stats": { "stamina": 4 }, "properties": { "type": "core" } },
-      { "id": "M", "name": "Metal Shield (M)", "image": "/parts/sub_twin.png", "system": "UX", "stats": { "defense": 8, "weight": 3 }, "properties": { "type": "metal_shield" } }
+      {
+        "id": "T",
+        "name": "Twin Layer (T)",
+        "image": "parts/sub_twin.png",
+        "system": "UX",
+        "stats": {
+          "defense": 5,
+          "burst": 3
+        },
+        "properties": {
+          "type": "twin"
+        }
+      },
+      {
+        "id": "C",
+        "name": "Core Ring (C)",
+        "image": "parts/sub_twin.png",
+        "system": "UX",
+        "stats": {
+          "stamina": 4
+        },
+        "properties": {
+          "type": "core"
+        }
+      },
+      {
+        "id": "M",
+        "name": "Metal Shield (M)",
+        "image": "parts/sub_twin.png",
+        "system": "UX",
+        "stats": {
+          "defense": 8,
+          "weight": 3
+        },
+        "properties": {
+          "type": "metal_shield"
+        }
+      }
     ]
   }
 }

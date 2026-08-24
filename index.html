@@ -5,9 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#f4f6f9" />
     <title>Blade Counter</title>
+    <style>
+      #boot-error { display:none; margin:24px auto; max-width:760px; padding:20px; font-family:system-ui,sans-serif; }
+      #boot-error pre { white-space:pre-wrap; overflow-wrap:anywhere; padding:12px; background:#f1f5f9; border-radius:12px; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="boot-error">
+      <h1>Blade Counter</h1>
+      <p>Si è verificato un errore durante il caricamento dell'app.</p>
+      <pre id="boot-error-message"></pre>
+      <button onclick="location.reload()">Ricarica</button>
+    </div>
+
+    <script>
+      (function () {
+        var box = document.getElementById('boot-error');
+        var message = document.getElementById('boot-error-message');
+        function showError(error) {
+          var text = error && (error.stack || error.message) ? (error.stack || error.message) : String(error);
+          if (message) message.textContent = text;
+          if (box) box.style.display = 'block';
+          console.error(error);
+        }
+        window.addEventListener('error', function (event) { showError(event.error || event.message); });
+        window.addEventListener('unhandledrejection', function (event) { showError(event.reason); });
+      }());
+    </script>
+    <script type="module" src="./src/main.jsx"></script>
   </body>
 </html>

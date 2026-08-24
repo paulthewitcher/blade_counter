@@ -83,3 +83,7 @@ npm test
 npm run build
 npm run dev
 ```
+
+## GitHub Pages
+
+In `Settings → Pages`, select **GitHub Actions** as the source. The workflow deploys the `main` branch. The app bootstrap uses relative URLs so it works correctly under a repository subpath.
