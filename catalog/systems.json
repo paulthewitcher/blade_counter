@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "systems": {
+    "BX": {
+      "label": "Sistema BX",
+      "slots": {
+        "blade": {
+          "required": true
+        },
+        "ratchet": {
+          "required": true
+        },
+        "bit": {
+          "required": true
+        },
+        "lock_cip": {
+          "required": false
+        },
+        "subBlade": {
+          "required": false
+        }
+      }
+    },
+    "UX": {
+      "label": "Sistema UX",
+      "slots": {
+        "blade": {
+          "required": true
+        },
+        "ratchet": {
+          "required": true
+        },
+        "bit": {
+          "required": true
+        },
+        "lock_cip": {
+          "required": false
+        },
+        "subBlade": {
+          "required": false
+        }
+      }
+    },
+    "CX": {
+      "label": "Sistema CX",
+      "slots": {
+        "blade": {
+          "required": true
+        },
+        "ratchet": {
+          "required": true
+        },
+        "bit": {
+          "required": true
+        },
+        "lock_cip": {
+          "required": false
+        },
+        "subBlade": {
+          "required": false
+        }
+      }
+    }
+  }
+}

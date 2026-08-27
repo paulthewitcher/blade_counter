@@ -2,22 +2,22 @@ import React, { useMemo } from 'react';
 import StatsPreview from '../garage/StatsPreview';
 import { resolveLoadoutParts, getVisibleStats, sumStats } from '../../domain/parts';
 
-export default function ComboList({ catalog, combos, onToggleFavorite, onDelete }) {
-  const cards = useMemo(() => combos.map((combo) => {
-    const parts = resolveLoadoutParts(catalog, combo.parts);
-    return { combo, parts, stats: getVisibleStats(sumStats(parts)) };
-  }), [catalog, combos]);
+export default function ComboList({ catalog, beyblades, onToggleFavorite, onDelete }) {
+  const cards = useMemo(() => beyblades.map((beyblade) => {
+    const parts = resolveLoadoutParts(catalog, beyblade.parts);
+    return { beyblade, parts, stats: getVisibleStats(sumStats(parts)) };
+  }), [catalog, beyblades]);
 
   return (
     <div className="combo-list">
-      {cards.length === 0 ? <div className="empty-card">Nessuna combo salvata.</div> : cards.map(({ combo, parts, stats }) => (
-        <article className="combo-card" key={combo.id}>
+      {cards.length === 0 ? <div className="empty-card">Nessun Beyblade salvato.</div> : cards.map(({ beyblade, parts, stats }) => (
+        <article className="combo-card" key={beyblade.id}>
           <div className="combo-card-top">
-            <div><h3>{combo.name}</h3><p>{parts.map((part) => part.name).join(' • ')}</p></div>
-            <button className="icon-button" onClick={() => onToggleFavorite(combo.id)} aria-label="Preferita">{combo.favorite ? '★' : '☆'}</button>
+            <div><h3>{beyblade.name}</h3><p>{parts.map((part) => part.name).join(' • ')}</p></div>
+            <button className="icon-button" onClick={() => onToggleFavorite(beyblade.id)} aria-label="Preferito">{beyblade.favorite ? '★' : '☆'}</button>
           </div>
           <StatsPreview totals={stats} />
-          <button className="danger-button" onClick={() => onDelete(combo.id)}>Rimuovi</button>
+          <button className="danger-button" onClick={() => onDelete(beyblade.id)}>Rimuovi</button>
         </article>
       ))}
     </div>

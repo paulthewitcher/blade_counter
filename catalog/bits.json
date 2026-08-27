@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "parts": [
+    {
+      "id": "B",
+      "name": "Ball (B)",
+      "image": "parts/bit_ball.png",
+      "system": "BX",
+      "stats": {
+        "defence": 10,
+        "stamina": 20
+      },
+      "details": {
+        "type": "ball"
+      },
+      "tags": [
+        "ball"
+      ]
+    },
+    {
+      "id": "R",
+      "name": "Rush (R)",
+      "image": "parts/bit_ball.png",
+      "system": "BX",
+      "stats": {
+        "attack": 10
+      },
+      "details": {
+        "type": "rush"
+      },
+      "tags": [
+        "rush"
+      ]
+    },
+    {
+      "id": "GF",
+      "name": "Gear Flat (GF)",
+      "image": "parts/bit_ball.png",
+      "system": "UX",
+      "stats": {
+        "attack": 12,
+        "burst": 2
+      },
+      "details": {
+        "type": "gear_flat"
+      },
+      "tags": [
+        "gear-flat"
+      ]
+    },
+    {
+      "id": "GN",
+      "name": "Gear Needle (GN)",
+      "image": "parts/bit_ball.png",
+      "system": "UX",
+      "stats": {
+        "defence": 8,
+        "stamina": 8
+      },
+      "details": {
+        "type": "gear_needle"
+      },
+      "tags": [
+        "gear-needle"
+      ]
+    },
+    {
+      "id": "F",
+      "name": "Flat (F)",
+      "image": "parts/bit_ball.png",
+      "system": "BX",
+      "stats": {
+        "attack": 15
+      },
+      "details": {
+        "type": "flat"
+      },
+      "tags": [
+        "flat"
+      ]
+    },
+    {
+      "id": "T",
+      "name": "Taper (T)",
+      "image": "parts/bit_ball.png",
+      "system": "BX",
+      "stats": {
+        "stamina": 8,
+        "defence": 4
+      },
+      "details": {
+        "type": "taper"
+      },
+      "tags": [
+        "taper"
+      ]
+    },
+    {
+      "id": "N",
+      "name": "Needle (N)",
+      "image": "parts/bit_ball.png",
+      "system": "BX",
+      "stats": {
+        "defence": 10
+      },
+      "details": {
+        "type": "needle"
+      },
+      "tags": [
+        "needle"
+      ]
+    },
+    {
+      "id": "O",
+      "name": "Orb (O)",
+      "image": "parts/bit_ball.png",
+      "system": "BX",
+      "stats": {
+        "stamina": 14
+      },
+      "details": {
+        "type": "orb"
+      },
+      "tags": [
+        "orb"
+      ]
+    },
+    {
+      "id": "H",
+      "name": "Hexa (H)",
+      "image": "parts/bit_ball.png",
+      "system": "BX",
+      "stats": {
+        "attack": 8,
+        "defence": 6
+      },
+      "details": {
+        "type": "hexa"
+      },
+      "tags": [
+        "hexa"
+      ]
+    }
+  ]
+}

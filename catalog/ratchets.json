@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "parts": [
+    {
+      "id": "3-60",
+      "name": "3-60",
+      "image": "parts/ratchet_3_60.png",
+      "system": "BX",
+      "stats": {
+        "attack": 12,
+        "height": 60
+      },
+      "details": {
+        "type": "balance"
+      },
+      "tags": [
+        "balance"
+      ]
+    },
+    {
+      "id": "4-60",
+      "name": "4-60",
+      "image": "parts/ratchet_3_60.png",
+      "system": "BX",
+      "stats": {
+        "height": 60
+      },
+      "details": {},
+      "tags": []
+    },
+    {
+      "id": "9-60",
+      "name": "9-60",
+      "image": "parts/ratchet_3_60.png",
+      "system": "BX",
+      "stats": {
+        "defence": 6,
+        "height": 60
+      },
+      "details": {},
+      "tags": []
+    },
+    {
+      "id": "1-60",
+      "name": "1-60",
+      "image": "parts/ratchet_3_60.png",
+      "system": "BX",
+      "stats": {
+        "attack": 4,
+        "height": 60
+      },
+      "details": {},
+      "tags": []
+    },
+    {
+      "id": "5-60",
+      "name": "5-60",
+      "image": "parts/ratchet_3_60.png",
+      "system": "BX",
+      "stats": {
+        "defence": 4,
+        "height": 60
+      },
+      "details": {},
+      "tags": []
+    },
+    {
+      "id": "3-80",
+      "name": "3-80",
+      "image": "parts/ratchet_3_60.png",
+      "system": "BX",
+      "stats": {
+        "height": 80
+      },
+      "details": {},
+      "tags": []
+    }
+  ]
+}

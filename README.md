@@ -1,89 +1,61 @@
-# Blade Counter — v2 data-first rebuild
+# Blade Counter — v3 data model
 
-Nuova base del progetto, pensata per ripartire dall'AS-IS con un modello dati flessibile.
+## Modello
 
-## Modello dati
+Un `Beyblade` è composto da 3 a 5 `Part`:
 
-Esistono esattamente 4 tipi di parte:
+- `blade` — obbligatorio
+- `ratchet` — obbligatorio
+- `bit` — obbligatorio
+- `lock_cip` — opzionale
+- `subBlade` — opzionale, massimo 1
 
-- `blade`
-- `ratchet`
-- `bit`
-- `lock_cip`
+Le stats sono la somma delle stats definite nei singoli pezzi. Le stats con totale zero non vengono mostrate. Le combo/Beyblade salvati contengono solo i riferimenti (`id`) ai pezzi.
 
-Ogni parte può avere un numero arbitrario di statistiche numeriche in `stats`:
+## Anagrafica isolata
 
-```json
-"stats": {
-  "attack": 20,
-  "defense": 5,
-  "stamina": 8,
-  "height": 60,
-  "burst": 2
-}
+L'anagrafica vive nella cartella root `catalog/`, separata dall'applicazione:
+
+```text
+catalog/
+├── README.md
+├── systems.json
+├── blades.json
+├── ratchets.json
+├── bits.json
+├── lock_cips.json
+└── sub_blades.json
 ```
 
-Non esiste un elenco obbligatorio di stats. Durante l'assemblaggio, tutte le chiavi trovate vengono sommate. Le statistiche con totale uguale a zero non vengono mostrate nella preview del Garage.
+`src/data/catalog.js` è l'unico adapter che importa i file del catalogo nell'app.
 
-Le combo salvano solo gli ID delle parti:
+## Stats whitelist
 
-```json
-"parts": {
-  "blade": "dran_sword",
-  "ratchet": "3-60",
-  "bit": "F",
-  "lock_cip": "T"
-}
+Le statistiche numeriche sono sotto la label `stats`. La whitelist è centralizzata in `src/config/stats.js`.
+
+```text
+attack
+defence
+stamina
+height
+burst
+weight
 ```
 
-In questo modo aggiungere, rimuovere o modificare un pezzo nel catalogo non richiede di duplicare le stats nelle combo.
+Per introdurre una nuova stat, si aggiunge prima la chiave alla whitelist. Non è necessario modificare la logica del Garage.
 
-## Avvio locale
+## Details whitelist
 
-```bash
-npm ci
-npm run dev
-```
+Le informazioni qualitative restano sotto `details`, separate dalle stats. La configurazione è in `src/config/details.js` e mantiene le chiavi correnti `type` e `spin direction`.
 
-## Verifica
+## Tags
 
-```bash
-npm run lint
-npm test
-npm run build
-```
+`tags` sono array di stringhe pensati per ricerca e filtri futuri.
+
+## Persistenza
+
+Lo storage è stato portato allo schema v3. Le strutture precedenti con `combos` vengono migrate automaticamente in `beyblades`; l'inventory separato è stato rimosso perché l'anagrafica rappresenta direttamente i pezzi posseduti.
 
 ## GitHub Pages
 
-Il progetto usa GitHub Actions per build e deploy su Pages. In **Settings → Pages** imposta la source su **GitHub Actions**.
-
-La base Vite è impostata su `/blade_counter/` per il repository `paulthewitcher.github.io/blade_counter`.
-
-## Cosa portare avanti nel prossimo step
-
-1. Definire il catalogo completo dei pezzi.
-2. Definire eventuali metadati non numerici in `properties`.
-3. Aggiungere inventory reale separata dal catalogo.
-4. Aggiungere migration dal vecchio `localStorage` quando stabilizziamo il nuovo schema.
-
-
-## GitHub Pages
-
-In GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-
-Il workflow viene eseguito quando fai push su `main`.
-Gli asset Vite sono relativi (`./`), quindi il progetto funziona anche quando GitHub Pages pubblica il repository sotto un sottopercorso.
-
-Per test locale:
-
-```bash
-npm ci
-npm run lint
-npm test
-npm run build
-npm run dev
-```
-
-## GitHub Pages
-
-In `Settings → Pages`, select **GitHub Actions** as the source. The workflow deploys the `main` branch. The app bootstrap uses relative URLs so it works correctly under a repository subpath.
+Lascia **Settings → Pages → Source = GitHub Actions**. Il workflow esegue build di Vite e pubblica `dist`.

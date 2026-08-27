@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "parts": [
+    {
+      "id": "T",
+      "name": "Twin Layer (T)",
+      "image": "parts/sub_twin.png",
+      "system": "UX",
+      "stats": {
+        "defence": 5,
+        "burst": 3
+      },
+      "details": {
+        "type": "twin"
+      },
+      "tags": [
+        "twin"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "Core Ring (C)",
+      "image": "parts/sub_twin.png",
+      "system": "UX",
+      "stats": {
+        "stamina": 4
+      },
+      "details": {
+        "type": "core"
+      },
+      "tags": [
+        "core"
+      ]
+    },
+    {
+      "id": "M",
+      "name": "Metal Shield (M)",
+      "image": "parts/sub_twin.png",
+      "system": "UX",
+      "stats": {
+        "defence": 8,
+        "weight": 3
+      },
+      "details": {
+        "type": "metal_shield"
+      },
+      "tags": [
+        "metal"
+      ]
+    }
+  ]
+}

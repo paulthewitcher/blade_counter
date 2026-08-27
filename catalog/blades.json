@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "parts": [
+    {
+      "id": "roar_tyranno",
+      "name": "Roar Tyranno",
+      "image": "parts/roar_tyranno.png",
+      "system": "BX",
+      "stats": {
+        "attack": 12
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "balance"
+      },
+      "tags": [
+        "right-spin",
+        "balance"
+      ]
+    },
+    {
+      "id": "scythe_incendio",
+      "name": "Scythe Incendio",
+      "image": "parts/roar_tyranno.png",
+      "system": "BX",
+      "stats": {
+        "stamina": 10
+      },
+      "details": {
+        "spin direction": "right"
+      },
+      "tags": [
+        "right-spin"
+      ]
+    },
+    {
+      "id": "dran_sword",
+      "name": "Dran Sword",
+      "image": "parts/roar_tyranno.png",
+      "system": "BX",
+      "stats": {
+        "attack": 20,
+        "defence": 5
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "attack"
+      },
+      "tags": [
+        "right-spin",
+        "attack"
+      ]
+    },
+    {
+      "id": "hell_scythe",
+      "name": "Hell Scythe",
+      "image": "parts/roar_tyranno.png",
+      "system": "BX",
+      "stats": {
+        "stamina": 12,
+        "defence": 4
+      },
+      "details": {
+        "spin direction": "right"
+      },
+      "tags": [
+        "right-spin"
+      ]
+    },
+    {
+      "id": "wizard_arrow",
+      "name": "Wizard Arrow",
+      "image": "parts/roar_tyranno.png",
+      "system": "BX",
+      "stats": {
+        "defence": 14,
+        "stamina": 8
+      },
+      "details": {
+        "spin direction": "right"
+      },
+      "tags": [
+        "right-spin"
+      ]
+    },
+    {
+      "id": "knight_shield",
+      "name": "Knight Shield",
+      "image": "parts/roar_tyranno.png",
+      "system": "BX",
+      "stats": {
+        "defence": 20
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "defence"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
+      ]
+    },
+    {
+      "id": "wizard_rod",
+      "name": "Wizard Rod",
+      "image": "parts/roar_tyranno.png",
+      "system": "BX",
+      "stats": {
+        "stamina": 20
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "stamina"
+      },
+      "tags": [
+        "right-spin",
+        "stamina"
+      ]
+    },
+    {
+      "id": "dran_buster",
+      "name": "Dran Buster",
+      "image": "parts/roar_tyranno.png",
+      "system": "UX",
+      "stats": {
+        "attack": 24
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "attack"
+      },
+      "tags": [
+        "right-spin",
+        "attack"
+      ]
+    }
+  ]
+}
