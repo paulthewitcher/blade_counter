@@ -6,6 +6,7 @@ export const createId = () => `${Date.now()}-${Math.random().toString(36).slice(
 export const STAT_EPSILON = 0.000001;
 export const PART_TYPE_DEFINITIONS = PART_DEFINITIONS;
 export const emptyLoadout = createEmptyLoadout;
+export { PART_TYPES };
 
 export const normalizeStats = (stats) => {
   if (!stats || typeof stats !== 'object') return {};
