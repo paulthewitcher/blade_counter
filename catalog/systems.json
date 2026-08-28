@@ -21,7 +21,7 @@
           "required": false
         },
         "subBlade": {
-          "enabled": true,
+          "enabled": false,
           "required": false
         }
       }
