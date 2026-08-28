@@ -17,11 +17,11 @@
           "required": true
         },
         "lock_cip": {
-          "enabled": false,
+          "enabled": true,
           "required": false
         },
         "subBlade": {
-          "enabled": false,
+          "enabled": true,
           "required": false
         }
       }

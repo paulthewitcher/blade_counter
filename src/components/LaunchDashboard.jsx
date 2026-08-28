@@ -2,7 +2,8 @@ import StatsPreview from './garage/StatsPreview';
 import { getVisibleStats, resolveLoadoutParts, sumStats } from '../domain/parts';
 
 export default function LaunchDashboard({ catalog, data, beyblades, selectedComboId, onSelectCombo, onClearHistory, isConnected, onConnect, onDisconnect, liveRpm }) {
-  const selected = beyblades.find((beyblade) => beyblade.id === selectedComboId);
+  const activeBeyblades = beyblades.filter((beyblade) => beyblade.favorite);
+  const selected = activeBeyblades.find((beyblade) => beyblade.id === selectedComboId);
   const stats = selected ? getVisibleStats(sumStats(resolveLoadoutParts(catalog, selected.parts))) : {};
 
   return (
@@ -12,8 +13,12 @@ export default function LaunchDashboard({ catalog, data, beyblades, selectedComb
         <button className={isConnected ? 'disconnect-button' : 'connect-button'} onClick={isConnected ? onDisconnect : onConnect}>{isConnected ? 'Disconnetti' : 'Connetti'}</button>
       </section>
       <section className="panel">
-        <div className="panel-title-row"><div><h2>Garage attivo</h2><p>Beyblade salvati disponibili per il lancio.</p></div></div>
-        <div className="combo-select-list">{beyblades.length === 0 ? <div className="empty-card">Nessun Beyblade salvato.</div> : beyblades.map((beyblade) => <button key={beyblade.id} onClick={() => onSelectCombo(beyblade.id)} className={selectedComboId === beyblade.id ? 'combo-select selected' : 'combo-select'}><span>{beyblade.favorite ? '★' : '☆'}</span>{beyblade.name}</button>)}</div>
+        <div className="panel-title-row"><div><h2>Garage attivo</h2><p>Solo i Beyblade contrassegnati con la stellina sono disponibili per il lancio.</p></div></div>
+        <div className="combo-select-list">
+          {activeBeyblades.length === 0
+            ? <div className="empty-card">Nessun Beyblade attivo. Attiva la stellina dal Garage.</div>
+            : activeBeyblades.map((beyblade) => <button key={beyblade.id} onClick={() => onSelectCombo(beyblade.id)} className={selectedComboId === beyblade.id ? 'combo-select selected' : 'combo-select'}><span>★</span>{beyblade.name}</button>)}
+        </div>
         {selected && <StatsPreview totals={stats} />}
       </section>
       <section className="panel">

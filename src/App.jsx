@@ -48,10 +48,14 @@ export default function App() {
     log(`Beyblade salvato: ${beyblade.name}`);
   };
 
-  const toggleFavorite = (id) => setData((current) => ({
-    ...current,
-    beyblades: current.beyblades.map((beyblade) => beyblade.id === id ? { ...beyblade, favorite: !beyblade.favorite } : beyblade),
-  }));
+  const toggleFavorite = (id) => {
+    setData((current) => {
+      const updated = current.beyblades.map((beyblade) => beyblade.id === id ? { ...beyblade, favorite: !beyblade.favorite } : beyblade);
+      const toggled = updated.find((beyblade) => beyblade.id === id);
+      if (toggled && !toggled.favorite && toggled.id === selectedComboId) setSelectedComboId('');
+      return { ...current, beyblades: updated };
+    });
+  };
 
   const deleteBeyblade = (id) => {
     if (id === selectedComboId) setSelectedComboId('');
@@ -62,7 +66,7 @@ export default function App() {
     <div className="app-shell">
       <header className="app-header">
         <div className="header-art" style={{ backgroundImage: `linear-gradient(to bottom, rgba(244,246,249,0.02) 40%, #f4f6f9 100%), url(${import.meta.env.BASE_URL}images/battlepass_header.jpg)` }} />
-        <div className="header-overlay"><span>Blade Counter</span><small>data-first rebuild • v3.3.0</small></div>
+        <div className="header-overlay"><span>Blade Counter</span><small>data-first rebuild • v3.3.1</small></div>
         <div className={isConnected ? 'status-dot connected' : 'status-dot'} title={isConnected ? 'Battle Pass connesso' : 'Battle Pass disconnesso'} />
       </header>
       <main className="app-content">

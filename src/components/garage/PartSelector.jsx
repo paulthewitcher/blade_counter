@@ -28,8 +28,6 @@ export default function PartSelector({ type, parts, value, onChange }) {
     onChange(parts[(selectedIndex + 1) % parts.length].id);
   };
 
-  const clear = () => onChange('');
-
   const imageSrc = useMemo(() => {
     if (!displayPart?.image) return DEFAULT_IMAGE;
     return `${import.meta.env.BASE_URL}${displayPart.image.replace(/^\/+/, '')}`;
@@ -47,8 +45,8 @@ export default function PartSelector({ type, parts, value, onChange }) {
   return (
     <section className="garage-slot">
       <div className="garage-slot-header">
-        <div><span>{definition?.label || type}</span><small>{current?.name || 'Seleziona un pezzo'}</small></div>
-        <small>{selectedIndex >= 0 ? selectedIndex + 1 : '—'} / {parts.length}</small>
+        <span>{definition?.label || type}</span>
+        <small>{selectedIndex >= 0 ? `${selectedIndex + 1} / ${parts.length}` : `0 / ${parts.length}`}</small>
       </div>
       <div className="carousel-row">
         <button type="button" className="carousel-arrow" onClick={previous} aria-label={`Precedente ${definition?.label || type}`}>‹</button>
@@ -58,10 +56,7 @@ export default function PartSelector({ type, parts, value, onChange }) {
         </button>
         <button type="button" className="carousel-arrow" onClick={next} aria-label={`Successivo ${definition?.label || type}`}>›</button>
       </div>
-      <div className="carousel-footer">
-        <button type="button" className="text-button" onClick={clear}>Azzera</button>
-        {current?.details?.type && <span>{current.details.type}</span>}
-      </div>
+      {current?.details?.type && <div className="carousel-detail">{current.details.type}</div>}
     </section>
   );
 }
