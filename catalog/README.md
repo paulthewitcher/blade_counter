@@ -1,32 +1,53 @@
 # Blade Counter catalog
 
-Questa cartella contiene esclusivamente l'anagrafica dei pezzi posseduti e dei sistemi disponibili.
+This directory is the editable anagraphics of the user's owned parts. It is intentionally isolated from React UI code.
 
-## File
+## Files
 
-- `systems.json`: sistemi e slot.
-- `blades.json`: `blade`.
-- `ratchets.json`: `ratchet`.
-- `bits.json`: `bit`.
-- `lock_cips.json`: `lock_cip`.
-- `sub_blades.json`: `subBlade`.
+- `systems.json`: supported Beyblade systems and their enabled/required slots.
+- `blades.json`: blade parts.
+- `ratchets.json`: ratchet parts.
+- `bits.json`: bit parts.
+- `lock_cips.json`: lock cip parts.
+- `sub_blades.json`: optional sub blade parts.
 
-## Part
+## Part schema
 
-Ogni record ha un `id` stabile, `name`, eventuale `image`, `system`, `stats`, `details` e `tags`.
+Every part follows the same shape:
 
-## Stats
+```json
+{
+  "id": "stable_id",
+  "name": "Human readable name",
+  "image": "parts/example.png",
+  "system": "BX",
+  "stats": {
+    "attack": 10,
+    "defence": 5,
+    "stamina": 12
+  },
+  "details": {
+    "type": "balance",
+    "spin direction": "right"
+  },
+  "tags": ["balance"]
+}
+```
 
-`stats` contiene zero o più statistiche numeriche. Le chiavi ammesse sono definite in `src/config/stats.js`. Una stat assente equivale a zero.
+`stats` contains only numeric values and is restricted by `src/config/stats.js`. Missing stats are equivalent to zero. `details` contains qualitative metadata and is restricted by `src/config/details.js`. `image` is optional; missing/broken images fall back to `/default.png` through the app's Pages-safe base URL.
 
-## Details
+## System slot schema
 
-`details` contiene informazioni non additive. Le chiavi ammesse sono definite in `src/config/details.js`. La struttura corrente mantiene, tra le altre, `type` e `spin direction`.
+A system slot uses both flags:
 
-## Sub Blade
+```json
+"subBlade": {
+  "enabled": true,
+  "required": false
+}
+```
 
-`subBlade` è uno slot opzionale, con massimo un componente per Beyblade. L'anagrafica parte vuota finché non vengono inseriti i tuoi pezzi reali.
+- `enabled: true` means the system exposes the selector.
+- `required: true` means a valid Beyblade must select a part in that slot.
 
-## Modifica dell'anagrafica
-
-Per aggiungere/rimuovere un pezzo si modifica esclusivamente il JSON della relativa categoria. Non è necessario cambiare il Garage.
+This allows 3-, 4- and 5-part systems without hard-coding the rules in the UI.
