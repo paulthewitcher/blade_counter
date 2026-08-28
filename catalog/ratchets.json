@@ -29,9 +29,11 @@
     {
       "id": "9-60",
       "name": "9-60",
-      "image": "parts/ratchet_3_60.png",
+      "image": "parts/ratchet_9_60.png",
       "stats": {
-        "defence": 6,
+        "attack": 13,
+        "defence": 10,
+        "stamina": 7,
         "height": 60
       },
       "details": {},
@@ -40,9 +42,11 @@
     {
       "id": "1-60",
       "name": "1-60",
-      "image": "parts/ratchet_3_60.png",
+      "image": "parts/ratchet_1_60_orange.png",
       "stats": {
-        "attack": 4,
+        "attack": 17,
+        "defence": 9,
+        "stamina": 4,
         "height": 60
       },
       "details": {},
@@ -60,10 +64,26 @@
       "tags": []
     },
     {
-      "id": "3-80",
+      "id": "3-80-green-water",
       "name": "3-80",
-      "image": "parts/ratchet_3_60.png",
+      "image": "parts/ratchet_3_80_green_water.png",
       "stats": {
+        "attack": 15,
+        "defence": 7,
+        "stamina": 8,
+        "height": 80
+      },
+      "details": {},
+      "tags": []
+    },
+    {
+      "id": "4-80-yellow-flux",
+      "name": "4-80",
+      "image": "parts/ratchet_4_80_yellow_flux.png",
+      "stats": {
+        "attack": 11,
+        "defence": 11,
+        "stamina": 8,
         "height": 80
       },
       "details": {},

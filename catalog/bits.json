@@ -2,12 +2,15 @@
   "schemaVersion": 1,
   "parts": [
     {
-      "id": "B",
-      "name": "Ball (B)",
-      "image": "parts/bit_ball.png",
+      "id": "b",
+      "name": "B",
+      "image": "parts/bit_b.png",
       "stats": {
-        "defence": 10,
-        "stamina": 20
+        "attack": 15,
+        "defence": 25,
+        "stamina": 50,
+        "dash": 10,
+        "burst": 30
       },
       "details": {
         "type": "ball"
@@ -31,18 +34,21 @@
       ]
     },
     {
-      "id": "GF",
-      "name": "Gear Flat (GF)",
-      "image": "parts/bit_ball.png",
+      "id": "gf",
+      "name": "GF",
+      "image": "parts/bit_gf.png",
       "stats": {
-        "attack": 12,
-        "burst": 2
+        "attack": 50,
+        "defence": 5,
+        "stamina": 5,
+        "dash": 40,
+        "burst": 80
       },
       "details": {
-        "type": "gear_flat"
+        "type": "attack"
       },
       "tags": [
-        "gear-flat"
+        "attack"
       ]
     },
     {
@@ -118,7 +124,7 @@
       ]
     },
     {
-      "id": "H",
+      "id": "h",
       "name": "Hexa (H)",
       "image": "parts/bit_ball.png",
       "stats": {
@@ -130,6 +136,60 @@
       },
       "tags": [
         "hexa"
+      ]
+    },
+    {
+      "id": "hn",
+      "name": "HN",
+      "image": "parts/bit_hn.png",
+      "stats": {
+        "attack": 15,
+        "defence": 55,
+        "stamina": 20,
+        "dash": 10,
+        "burst": 30
+      },
+      "details": {
+        "type": "defence"
+      },
+      "tags": [
+        "defence"
+      ]
+    },
+    {
+      "id": "f",
+      "name": "F",
+      "image": "parts/bit_f.png",
+      "stats": {
+        "attack": 40,
+        "defence": 15,
+        "stamina": 10,
+        "dash": 35,
+        "burst": 80
+      },
+      "details": {
+        "type": "attack"
+      },
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "un",
+      "name": "UN",
+      "image": "parts/bit_un.png",
+      "stats": {
+        "attack": 10,
+        "defence": 60,
+        "stamina": 20,
+        "dash": 10,
+        "burst": 30
+      },
+      "details": {
+        "type": "defence"
+      },
+      "tags": [
+        "defence"
       ]
     }
   ]

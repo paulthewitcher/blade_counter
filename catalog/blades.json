@@ -4,17 +4,19 @@
     {
       "id": "roar_tyranno",
       "name": "Roar Tyranno",
-      "image": "parts/roar_tyranno.png",
+      "image": "parts/blade_roar_tyranno.png",
       "stats": {
-        "attack": 12
+        "attack": 60,
+        "defence": 10,
+        "stamina": 12
       },
       "details": {
         "spin direction": "right",
-        "type": "balance"
+        "type": "attack"
       },
       "tags": [
         "right-spin",
-        "balance"
+        "attack"
       ]
     },
     {
@@ -33,7 +35,7 @@
     },
     {
       "id": "dran_sword",
-      "name": "Dran Sword",
+      "name": "Sword Dran",
       "image": "parts/roar_tyranno.png",
       "stats": {
         "attack": 20,
@@ -124,6 +126,78 @@
       "tags": [
         "right-spin",
         "attack"
+      ]
+    },
+    {
+      "id": "knife_shinobi",
+      "name": "Knife Shinobi",
+      "image": "parts/blade_knife_shinobi.png",
+      "stats": {
+        "attack": 23,
+        "defence": 50,
+        "stamina": 27
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "defence"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
+      ]
+    },
+    {
+      "id": "keel_shark_green",
+      "name": "Keel Shark",
+      "image": "parts/blade_kill_shark_green.png",
+      "stats": {
+        "attack": 60,
+        "defence": 25,
+        "stamina": 15
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "attack"
+      },
+      "tags": [
+        "right-spin",
+        "attack"
+      ]
+    },
+    {
+      "id": "rock_golem",
+      "name": "Rock Golem",
+      "image": "parts/blade_rock_golem.png",
+      "stats": {
+        "attack": 30,
+        "defence": 60,
+        "stamina": 10
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "defence"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
+      ]
+    },
+    {
+      "id": "talon_ptera",
+      "name": "Talon Ptera",
+      "image": "parts/blade_talon_ptera.png",
+      "stats": {
+        "attack": 27,
+        "defence": 23,
+        "stamina": 50
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "stamina"
+      },
+      "tags": [
+        "right-spin",
+        "stamina"
       ]
     }
   ]
