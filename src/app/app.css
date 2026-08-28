@@ -30,6 +30,7 @@ button { -webkit-tap-highlight-color: transparent; }
 .system-selector select { width: 100%; border: 1px solid #dbe2ea; border-radius: 12px; background: #fff; padding: 11px 12px; color: #0f172a; outline: none; }
 .system-selector select:focus { border-color: #94a3b8; box-shadow: 0 0 0 3px rgba(148,163,184,.15); }
 .garage-stage { display: flex; flex-direction: column; gap: 10px; padding: 4px 0 2px; }
+.garage-empty { padding: 28px 16px; border: 1px dashed #cbd5e1; border-radius: 18px; color: #94a3b8; text-align: center; font-size: 12px; font-weight: 700; background: #f8fafc; }
 .part-carousel { border: 1px solid #e5eaf0; border-radius: 18px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); padding: 10px 12px 8px; }
 .part-carousel-header, .part-carousel-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .part-carousel-header { padding: 0 4px 6px; }

@@ -61,6 +61,6 @@ Lo storage è stato portato allo schema v3. Le strutture precedenti con `combos`
 Lascia **Settings → Pages → Source = GitHub Actions**. Il workflow esegue build di Vite e pubblica `dist`.
 
 
-## Garage v3.1
+## Garage v3.2
 
 Il Garage usa i sistemi definiti in `catalog/systems.json`. Ogni slot ha `enabled` (supportato dal sistema) e `required` (obbligatorio). I selettori mostrano i pezzi del tipo corrente filtrati per `system` e usano `image` dal catalogo, con fallback a `public/default.png`. Le stats aggregate del Beyblade sono sempre calcolate a runtime e non vengono duplicate nei salvataggi.

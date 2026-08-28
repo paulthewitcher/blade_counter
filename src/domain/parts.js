@@ -39,15 +39,24 @@ export const normalizePart = (part) => ({
 });
 
 export const getSystemTypes = (catalog, system) => {
-  const definition = catalog?.systems?.[system];
-  if (!definition?.slots) return [];
-  return PART_TYPES.filter((type) => definition.slots[type]?.enabled);
+  const slots = catalog?.systems?.[system]?.slots;
+  if (!slots || typeof slots !== 'object') return [];
+
+  // The systems.json definition is the source of truth for which selectors
+  // exist. Do not infer slots from the available parts or from UI state.
+  return Object.entries(slots)
+    .filter(([, config]) => config?.enabled === true)
+    .map(([type]) => type)
+    .filter((type) => PART_DEFINITIONS[type]);
 };
 
 export const getRequiredPartTypes = (catalog, system) => {
-  const definition = catalog?.systems?.[system];
-  if (!definition?.slots) return [];
-  return PART_TYPES.filter((type) => definition.slots[type]?.enabled && definition.slots[type]?.required);
+  const slots = catalog?.systems?.[system]?.slots;
+  if (!slots || typeof slots !== 'object') return [];
+  return Object.entries(slots)
+    .filter(([, config]) => config?.enabled === true && config?.required === true)
+    .map(([type]) => type)
+    .filter((type) => PART_DEFINITIONS[type]);
 };
 
 export const getOptionalPartTypes = (catalog, system) =>

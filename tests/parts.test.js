@@ -27,6 +27,13 @@ const catalog = {
       lock_cip: { enabled: false, required: false },
       subBlade: { enabled: true, required: false },
     }},
+    CX: { slots: {
+      blade: { enabled: true, required: true },
+      ratchet: { enabled: true, required: true },
+      bit: { enabled: true, required: true },
+      lock_cip: { enabled: true, required: false },
+      subBlade: { enabled: false, required: false },
+    }},
   },
   parts: {
     blade: [
@@ -51,6 +58,7 @@ test('system slot metadata controls enabled, required and optional parts', () =>
   assert.deepEqual(getSystemTypes(catalog, 'UX'), ['blade', 'ratchet', 'bit', 'subBlade']);
   assert.deepEqual(getRequiredPartTypes(catalog, 'UX'), ['blade', 'ratchet', 'bit']);
   assert.deepEqual(getOptionalPartTypes(catalog, 'UX'), ['subBlade']);
+  assert.deepEqual(getSystemTypes(catalog, 'CX'), ['blade', 'ratchet', 'bit', 'lock_cip']);
 });
 
 test('parts are filtered by system', () => {
