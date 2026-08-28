@@ -4,7 +4,7 @@ import { resolveLoadoutParts, getVisibleStats, sumStats } from '../../domain/par
 
 export default function ComboList({ catalog, beyblades, onToggleFavorite, onDelete }) {
   const cards = useMemo(() => beyblades.map((beyblade) => {
-    const parts = resolveLoadoutParts(catalog, beyblade.parts);
+    const parts = resolveLoadoutParts(catalog, beyblade.parts, beyblade.system);
     return { beyblade, parts, stats: getVisibleStats(sumStats(parts)) };
   }), [catalog, beyblades]);
 

@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - feature/new_anagraphics
-
   workflow_dispatch:
 
 permissions:

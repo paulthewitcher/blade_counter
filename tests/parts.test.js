@@ -1,74 +1,83 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  createBeyblade,
-  emptyLoadout,
+  getPartsForSystem,
+  getSystemTypes,
+  getRequiredPartTypes,
+  getOptionalPartTypes,
   getVisibleStats,
-  isLoadoutComplete,
-  normalizeDetails,
-  normalizeStats,
-  resolveLoadoutParts,
   sumStats,
+  isLoadoutComplete,
+  createBeyblade,
 } from '../src/domain/parts.js';
 
-test('sums whitelist stats across 3 to 5 parts', () => {
-  const result = sumStats([
-    { stats: { attack: 80, stamina: 30 } },
-    { stats: { attack: 20, stamina: 20 } },
-    { stats: { attack: 0, stamina: 5 } },
-    { stats: { burst: 2 } },
-    { stats: { weight: 3 } },
-  ]);
+const catalog = {
+  systems: {
+    BX: { slots: {
+      blade: { enabled: true, required: true },
+      ratchet: { enabled: true, required: true },
+      bit: { enabled: true, required: true },
+      lock_cip: { enabled: false, required: false },
+      subBlade: { enabled: false, required: false },
+    }},
+    UX: { slots: {
+      blade: { enabled: true, required: true },
+      ratchet: { enabled: true, required: true },
+      bit: { enabled: true, required: true },
+      lock_cip: { enabled: false, required: false },
+      subBlade: { enabled: true, required: false },
+    }},
+  },
+  parts: {
+    blade: [
+      { id: 'roar_tyranno', name: 'Roar Tyranno', system: 'BX', stats: { attack: 80, defence: 0 } },
+      { id: 'ux_blade', name: 'UX Blade', system: 'UX', stats: { attack: 40 } },
+    ],
+    ratchet: [
+      { id: '3-60', name: '3-60', system: 'BX', stats: { attack: 20, defence: 20 } },
+      { id: '5-60', name: '5-60', system: 'UX', stats: { stamina: 10 } },
+    ],
+    bit: [
+      { id: 'B', name: 'Ball', system: 'BX', stats: { attack: 0, defence: 5, stamina: 55 } },
+      { id: 'GN', name: 'Gear Needle', system: 'UX', stats: { stamina: 8 } },
+    ],
+    lock_cip: [],
+    subBlade: [{ id: 'T', name: 'Twin Layer', system: 'UX', stats: { burst: 3 } }],
+  },
+};
 
-  assert.deepEqual(result, { attack: 100, stamina: 55, burst: 2, weight: 3 });
+test('system slot metadata controls enabled, required and optional parts', () => {
+  assert.deepEqual(getSystemTypes(catalog, 'BX'), ['blade', 'ratchet', 'bit']);
+  assert.deepEqual(getSystemTypes(catalog, 'UX'), ['blade', 'ratchet', 'bit', 'subBlade']);
+  assert.deepEqual(getRequiredPartTypes(catalog, 'UX'), ['blade', 'ratchet', 'bit']);
+  assert.deepEqual(getOptionalPartTypes(catalog, 'UX'), ['subBlade']);
 });
 
-test('rejects stats outside the whitelist', () => {
-  assert.deepEqual(
-    normalizeStats({ attack: 10, defence: 5, custom_stat: 99, stamina: 'not-a-number' }),
-    { attack: 10, defence: 5 },
-  );
+test('parts are filtered by system', () => {
+  assert.deepEqual(getPartsForSystem(catalog, 'blade', 'BX').map((p) => p.id), ['roar_tyranno']);
+  assert.deepEqual(getPartsForSystem(catalog, 'blade', 'UX').map((p) => p.id), ['ux_blade']);
 });
 
-test('details use their own whitelist and remain separate from stats', () => {
-  assert.deepEqual(
-    normalizeDetails({ type: 'balance', 'spin direction': 'right', attack: 20 }),
-    { type: 'balance', 'spin direction': 'right' },
-  );
+test('stats sum across 3 to 5 parts and zero totals are hidden', () => {
+  const parts = [catalog.parts.blade[0], catalog.parts.ratchet[0], catalog.parts.bit[0]];
+  const totals = sumStats(parts);
+  assert.deepEqual(totals, { attack: 100, defence: 25, stamina: 55 });
+  assert.deepEqual(getVisibleStats(totals), { attack: 100, defence: 25, stamina: 55 });
+  assert.deepEqual(getVisibleStats(sumStats([{ stats: { attack: 10 } }, { stats: { attack: -10 } }])), {});
 });
 
-test('zero totals are hidden from the preview', () => {
-  assert.deepEqual(getVisibleStats({ attack: 15, defence: 0, stamina: -0 }), { attack: 15 });
+test('optional subBlade can extend a valid UX loadout', () => {
+  const loadout = { system: 'UX', blade: 'ux_blade', ratchet: '5-60', bit: 'GN', subBlade: 'T' };
+  assert.equal(isLoadoutComplete(catalog, loadout, 'UX'), true);
+  const beyblade = createBeyblade(catalog, loadout, 'UX test');
+  assert.equal(beyblade.system, 'UX');
+  assert.equal(beyblade.parts.subBlade, 'T');
 });
 
-test('loadout supports three required parts plus two optional parts', () => {
-  const loadout = emptyLoadout();
-  assert.deepEqual(loadout, { blade: '', ratchet: '', bit: '', lock_cip: '', subBlade: '' });
-  assert.equal(isLoadoutComplete(loadout), false);
-
-  loadout.blade = 'blade-1';
-  loadout.ratchet = 'ratchet-1';
-  loadout.bit = 'bit-1';
-  assert.equal(isLoadoutComplete(loadout), true);
-});
-
-test('resolved parts can include optional lock_cip and subBlade', () => {
-  const catalog = { parts: {
-    blade: [{ id: 'b', name: 'Blade', stats: { attack: 80 } }],
-    ratchet: [{ id: 'r', name: 'Ratchet', stats: { attack: 20 } }],
-    bit: [{ id: 't', name: 'Bit', stats: { stamina: 55 } }],
-    lock_cip: [{ id: 'l', name: 'Lock Cip', stats: { burst: 2 } }],
-    subBlade: [{ id: 's', name: 'Sub Blade', stats: { defence: 5 } }],
-  }};
-  const parts = resolveLoadoutParts(catalog, { blade: 'b', ratchet: 'r', bit: 't', lock_cip: 'l', subBlade: 's' });
-  assert.equal(parts.length, 5);
-  assert.deepEqual(sumStats(parts), { attack: 100, stamina: 55, burst: 2, defence: 5 });
-});
-
-test('createBeyblade stores only stable part references', () => {
-  const catalog = { parts: { blade: [{ id: 'b', name: 'Blade' }], ratchet: [{ id: 'r', name: 'Ratchet' }], bit: [{ id: 't', name: 'Bit' }], lock_cip: [], subBlade: [] } };
-  const beyblade = createBeyblade(catalog, { blade: 'b', ratchet: 'r', bit: 't' }, 'My Beyblade');
-  assert.equal(beyblade.name, 'My Beyblade');
-  assert.deepEqual(beyblade.parts, { ...emptyLoadout(), blade: 'b', ratchet: 'r', bit: 't' });
-  assert.equal('stats' in beyblade, false);
+test('Beyblade stores references, not duplicated stats', () => {
+  const beyblade = createBeyblade(catalog, {
+    system: 'BX', blade: 'roar_tyranno', ratchet: '3-60', bit: 'B', lock_cip: '', subBlade: ''
+  }, 'Roar Tyranno');
+  assert.equal(Object.prototype.hasOwnProperty.call(beyblade, 'stats'), false);
+  assert.deepEqual(beyblade.parts, { blade: 'roar_tyranno', ratchet: '3-60', bit: 'B', lock_cip: '', subBlade: '' });
 });

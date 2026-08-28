@@ -25,6 +25,27 @@ button { -webkit-tap-highlight-color: transparent; }
 .panel h3 { margin: 0; font-size: 15px; }
 .schema-pill { padding: 5px 8px; border-radius: 999px; background: #f1f5f9; color: #475569; font-size: 9px; font-weight: 800; letter-spacing: .08em; }
 .selectors-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.system-selector { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.system-selector span { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: .05em; }
+.system-selector select { width: 100%; border: 1px solid #dbe2ea; border-radius: 12px; background: #fff; padding: 11px 12px; color: #0f172a; outline: none; }
+.system-selector select:focus { border-color: #94a3b8; box-shadow: 0 0 0 3px rgba(148,163,184,.15); }
+.garage-stage { display: flex; flex-direction: column; gap: 10px; padding: 4px 0 2px; }
+.part-carousel { border: 1px solid #e5eaf0; border-radius: 18px; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); padding: 10px 12px 8px; }
+.part-carousel-header, .part-carousel-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.part-carousel-header { padding: 0 4px 6px; }
+.part-carousel-header span { font-size: 11px; font-weight: 900; color: #334155; text-transform: uppercase; letter-spacing: .08em; }
+.part-carousel-header small, .part-carousel-footer span { font-size: 10px; color: #94a3b8; font-weight: 700; }
+.part-carousel-body { display: grid; grid-template-columns: 44px minmax(0,1fr) 44px; align-items: center; gap: 6px; }
+.carousel-arrow { width: 44px; height: 100%; min-height: 112px; border: 0; border-radius: 14px; background: transparent; color: #111; font-size: 42px; line-height: 1; cursor: pointer; }
+.carousel-arrow:hover:not(:disabled) { background: #eef2f7; }
+.carousel-arrow:disabled { opacity: .2; cursor: default; }
+.part-card { width: 100%; border: 0; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 3px 0; }
+.part-card strong { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; color: #0f172a; }
+.part-image-frame { width: 116px; height: 86px; display: flex; align-items: center; justify-content: center; }
+.part-image-frame img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+.part-carousel-footer { padding: 4px 4px 0; }
+.part-carousel-footer .text-button { margin: 0; padding: 2px 0; }
+.garage-summary { margin-top: 14px; padding-top: 14px; border-top: 1px solid #eef2f7; }
 .selector-field { display: flex; flex-direction: column; gap: 6px; }
 .selector-field span { font-size: 11px; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: .05em; }
 .selector-field select, .selector-field input { width: 100%; border: 1px solid #dbe2ea; border-radius: 12px; background: #fff; padding: 11px 12px; color: #0f172a; outline: none; }
@@ -65,4 +86,4 @@ button { -webkit-tap-highlight-color: transparent; }
 .nav-button span { font-size: 22px; line-height: 1; }
 .nav-button small { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
 .nav-button.active { color: #111; background: #fafafa; }
-@media (max-width: 640px) { .selectors-grid, .operation-grid { grid-template-columns: 1fr; } .hero-status { align-items: flex-start; } .hero-copy h1 { font-size: 24px; } }
+@media (max-width: 640px) { .selectors-grid, .operation-grid { grid-template-columns: 1fr; } .hero-status { align-items: flex-start; } .hero-copy h1 { font-size: 24px; } .part-carousel-body { grid-template-columns: 36px minmax(0,1fr) 36px; } .carousel-arrow { width: 36px; min-height: 102px; font-size: 34px; } .part-image-frame { width: 104px; height: 78px; } }

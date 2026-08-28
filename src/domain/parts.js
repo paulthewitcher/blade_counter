@@ -6,7 +6,6 @@ export const createId = () => `${Date.now()}-${Math.random().toString(36).slice(
 export const STAT_EPSILON = 0.000001;
 export const PART_TYPE_DEFINITIONS = PART_DEFINITIONS;
 export const emptyLoadout = createEmptyLoadout;
-export { PART_TYPES };
 
 export const normalizeStats = (stats) => {
   if (!stats || typeof stats !== 'object') return {};
@@ -39,6 +38,23 @@ export const normalizePart = (part) => ({
   tags: normalizeTags(part?.tags),
 });
 
+export const getSystemTypes = (catalog, system) => {
+  const definition = catalog?.systems?.[system];
+  if (!definition?.slots) return [];
+  return PART_TYPES.filter((type) => definition.slots[type]?.enabled);
+};
+
+export const getRequiredPartTypes = (catalog, system) => {
+  const definition = catalog?.systems?.[system];
+  if (!definition?.slots) return [];
+  return PART_TYPES.filter((type) => definition.slots[type]?.enabled && definition.slots[type]?.required);
+};
+
+export const getOptionalPartTypes = (catalog, system) =>
+  getSystemTypes(catalog, system).filter((type) => !getRequiredPartTypes(catalog, system).includes(type));
+
+export const getSystemLabel = (catalog, system) => catalog?.systems?.[system]?.label || system;
+
 export const getAllStatKeys = (parts) => {
   const keys = new Set();
   for (const part of parts) {
@@ -67,32 +83,36 @@ export const getVisibleStats = (totals) =>
 export const getPartById = (catalog, type, id) =>
   catalog?.parts?.[type]?.find((part) => part.id === id) || null;
 
-export const resolveLoadoutParts = (catalog, loadout) =>
-  PART_TYPES.map((type) => getPartById(catalog, type, loadout?.[type])).filter(Boolean);
+export const getPartsForSystem = (catalog, type, system) =>
+  (catalog?.parts?.[type] || [])
+    .map(normalizePart)
+    .filter((part) => !part.system || part.system === system);
 
-export const getRequiredPartTypes = () =>
-  PART_TYPES.filter((type) => PART_DEFINITIONS[type].required);
+export const resolveLoadoutParts = (catalog, loadout, system = loadout?.system) =>
+  getSystemTypes(catalog, system)
+    .map((type) => getPartById(catalog, type, loadout?.[type]))
+    .filter(Boolean)
+    .map(normalizePart);
 
-export const getOptionalPartTypes = () =>
-  PART_TYPES.filter((type) => !PART_DEFINITIONS[type].required);
+export const isLoadoutComplete = (catalog, loadout, system = loadout?.system) =>
+  getRequiredPartTypes(catalog, system).every((type) => Boolean(loadout?.[type]));
 
-export const isLoadoutComplete = (loadout) =>
-  getRequiredPartTypes().every((type) => Boolean(loadout?.[type]));
-
-export const countSelectedParts = (loadout) =>
-  PART_TYPES.filter((type) => Boolean(loadout?.[type])).length;
+export const countSelectedParts = (catalog, loadout, system = loadout?.system) =>
+  getSystemTypes(catalog, system).filter((type) => Boolean(loadout?.[type])).length;
 
 export const buildBeybladeName = (parts) =>
   parts.map((part) => part.name).filter(Boolean).join(' / ');
 
 export const createBeyblade = (catalog, loadout, name = '') => {
   const normalizedLoadout = { ...emptyLoadout(), ...loadout };
-  const parts = resolveLoadoutParts(catalog, normalizedLoadout);
+  const system = normalizedLoadout.system || Object.keys(catalog.systems || {})[0] || '';
+  const parts = resolveLoadoutParts(catalog, normalizedLoadout, system);
 
   return {
     id: createId(),
     name: name.trim() || buildBeybladeName(parts) || 'Nuovo Beyblade',
-    parts: normalizedLoadout,
+    system,
+    parts: Object.fromEntries(PART_TYPES.map((type) => [type, normalizedLoadout[type] || ''])),
     favorite: false,
     createdAt: new Date().toISOString(),
   };

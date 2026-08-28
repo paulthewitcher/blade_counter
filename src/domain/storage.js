@@ -12,6 +12,7 @@ const emptyPartReferences = () => ({
 const normalizeBeyblade = (beyblade) => ({
   id: String(beyblade?.id ?? ''),
   name: String(beyblade?.name || 'Nuovo Beyblade'),
+  system: String(beyblade?.system || 'BX'),
   parts: { ...emptyPartReferences(), ...(beyblade?.parts || {}) },
   favorite: Boolean(beyblade?.favorite),
   createdAt: beyblade?.createdAt || new Date().toISOString(),
