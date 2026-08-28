@@ -17,7 +17,7 @@
           "required": true
         },
         "lock_cip": {
-          "enabled": true,
+          "enabled": false,
           "required": false
         },
         "subBlade": {
