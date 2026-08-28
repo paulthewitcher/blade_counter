@@ -13,24 +13,28 @@
         "burst": 30
       },
       "details": {
-        "type": "ball"
+        "type": "stamina"
       },
       "tags": [
-        "ball"
+        "stamina"
       ]
     },
     {
-      "id": "R",
-      "name": "Rush (R)",
-      "image": "parts/bit_ball.png",
+      "id": "r",
+      "name": "R",
+      "image": "parts/bit_r.png",
       "stats": {
-        "attack": 10
+        "attack": 40,
+        "defence": 10,
+        "stamina": 20,
+        "dash": 30,
+        "burst": 80
       },
       "details": {
-        "type": "rush"
+        "type": "attack"
       },
       "tags": [
-        "rush"
+        "attack"
       ]
     },
     {

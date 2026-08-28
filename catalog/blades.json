@@ -199,6 +199,24 @@
         "right-spin",
         "stamina"
       ]
+    },
+    {
+      "id": "wand_wizard",
+      "name": "Wand Wizard",
+      "image": "parts/blade_wand_wizard.png",
+      "stats": {
+        "attack": 15,
+        "defence": 25,
+        "stamina": 60
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "stamina"
+      },
+      "tags": [
+        "right-spin",
+        "stamina"
+      ]
     }
   ]
 }
