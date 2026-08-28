@@ -1,53 +1,27 @@
-# Blade Counter catalog
+# Catalogo / Anagrafica
 
-This directory is the editable anagraphics of the user's owned parts. It is intentionally isolated from React UI code.
+Questa directory e` la sorgente dell'anagrafica dei pezzi posseduti.
 
-## Files
+- `systems.json`: definisce quali macro-categorie (`blade`, `ratchet`, `bit`, `lock_cip`, `subBlade`) sono abilitate e/o obbligatorie per ogni System.
+- `blades.json`, `ratchets.json`, `bits.json`, `lock_cips.json`, `sub_blades.json`: contengono i Part reali. I Part **non hanno alcun campo `system`**.
 
-- `systems.json`: supported Beyblade systems and their enabled/required slots.
-- `blades.json`: blade parts.
-- `ratchets.json`: ratchet parts.
-- `bits.json`: bit parts.
-- `lock_cips.json`: lock cip parts.
-- `sub_blades.json`: optional sub blade parts.
-
-## Part schema
-
-Every part follows the same shape:
+Ogni Part usa:
 
 ```json
 {
-  "id": "stable_id",
-  "name": "Human readable name",
-  "image": "parts/example.png",
-  "system": "BX",
+  "id": "roar_tyranno",
+  "name": "Roar Tyranno",
+  "image": "parts/roar_tyranno.png",
   "stats": {
-    "attack": 10,
-    "defence": 5,
-    "stamina": 12
+    "attack": 80,
+    "defence": 30
   },
   "details": {
     "type": "balance",
     "spin direction": "right"
   },
-  "tags": ["balance"]
+  "tags": ["balance", "right-spin"]
 }
 ```
 
-`stats` contains only numeric values and is restricted by `src/config/stats.js`. Missing stats are equivalent to zero. `details` contains qualitative metadata and is restricted by `src/config/details.js`. `image` is optional; missing/broken images fall back to `/default.png` through the app's Pages-safe base URL.
-
-## System slot schema
-
-A system slot uses both flags:
-
-```json
-"subBlade": {
-  "enabled": true,
-  "required": false
-}
-```
-
-- `enabled: true` means the system exposes the selector.
-- `required: true` means a valid Beyblade must select a part in that slot.
-
-This allows 3-, 4- and 5-part systems without hard-coding the rules in the UI.
+Le stats sono filtrate dalla whitelist in `src/config/stats.js`. I dettagli sono filtrati dalla whitelist in `src/config/details.js`.

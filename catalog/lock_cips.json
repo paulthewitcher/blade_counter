@@ -5,7 +5,6 @@
       "id": "T",
       "name": "Twin Layer (T)",
       "image": "parts/sub_twin.png",
-      "system": "UX",
       "stats": {
         "defence": 5,
         "burst": 3
@@ -21,7 +20,6 @@
       "id": "C",
       "name": "Core Ring (C)",
       "image": "parts/sub_twin.png",
-      "system": "UX",
       "stats": {
         "stamina": 4
       },
@@ -36,7 +34,6 @@
       "id": "M",
       "name": "Metal Shield (M)",
       "image": "parts/sub_twin.png",
-      "system": "UX",
       "stats": {
         "defence": 8,
         "weight": 3

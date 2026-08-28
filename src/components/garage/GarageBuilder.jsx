@@ -1,58 +1,42 @@
-import React, { useMemo, useState } from 'react';
-import PartCarousel from './PartCarousel';
+import React, { useEffect, useMemo, useState } from 'react';
+import PartSelector from './PartSelector';
 import StatsPreview from './StatsPreview';
-import {
-  createBeyblade,
-  emptyLoadout,
-  getPartsForSystem,
-  getRequiredPartTypes,
-  getSystemLabel,
-  getSystemTypes,
-  isLoadoutComplete,
-  resolveLoadoutParts,
-  sumStats,
-  getVisibleStats,
-} from '../../domain/parts';
+import { PART_TYPES } from '../../config/partDefinitions.js';
+import { createBeyblade, emptyLoadout, resolveLoadoutParts, sumStats, getVisibleStats, isLoadoutComplete } from '../../domain/parts.js';
+import { getEnabledPartTypes, getPartsForSystem, getSystem } from '../../domain/systems.js';
 
 export default function GarageBuilder({ catalog, onSaveBeyblade }) {
-  const systems = Object.keys(catalog.systems || {});
-  const [loadout, setLoadout] = useState({ ...emptyLoadout(), system: '' });
+  const [systemId, setSystemId] = useState('');
+  const [loadout, setLoadout] = useState(emptyLoadout());
   const [name, setName] = useState('');
 
-  // systems.json is the single source of truth for the visible slot list.
-  // No part selectors are rendered until a system has been explicitly chosen.
-  const systemTypes = useMemo(
-    () => getSystemTypes(catalog, loadout.system),
-    [catalog, loadout.system],
-  );
-  const requiredTypes = useMemo(
-    () => getRequiredPartTypes(catalog, loadout.system),
-    [catalog, loadout.system],
-  );
-  const selectedParts = useMemo(
-    () => resolveLoadoutParts(catalog, loadout, loadout.system),
-    [catalog, loadout],
-  );
-  const totals = useMemo(
-    () => getVisibleStats(sumStats(selectedParts)),
-    [selectedParts],
-  );
+  const system = getSystem(catalog, systemId);
+  const enabledTypes = useMemo(() => getEnabledPartTypes(system), [system]);
+  const selectedParts = useMemo(() => resolveLoadoutParts(catalog, loadout), [catalog, loadout]);
+  const totals = useMemo(() => getVisibleStats(sumStats(selectedParts)), [selectedParts]);
 
-  const updateSystem = (system) => {
-    // Changing system starts a clean assembly. This guarantees that a part
-    // selected for one system can never leak into another system.
-    setLoadout({ ...emptyLoadout(), system });
-    setName('');
+  useEffect(() => {
+    if (!systemId) {
+      setLoadout(emptyLoadout());
+      return;
+    }
+    setLoadout((current) => {
+      const next = emptyLoadout();
+      for (const type of getEnabledPartTypes(system)) next[type] = current[type] || '';
+      return next;
+    });
+  }, [systemId]);
+
+  const selectSystem = (value) => {
+    setSystemId(value);
+    setLoadout(emptyLoadout());
   };
 
-  const updatePart = (type, value) => {
-    setLoadout((current) => ({ ...current, [type]: value }));
-  };
+  const updatePart = (type, value) => setLoadout((current) => ({ ...current, [type]: value }));
 
   const handleSave = () => {
-    if (!isLoadoutComplete(catalog, loadout, loadout.system)) return;
-    onSaveBeyblade(createBeyblade(catalog, loadout, name));
-    setLoadout((current) => ({ ...emptyLoadout(), system: current.system }));
+    if (!systemId || !isLoadoutComplete(catalog, systemId, loadout)) return;
+    onSaveBeyblade(createBeyblade(catalog, systemId, loadout, name));
     setName('');
   };
 
@@ -60,82 +44,46 @@ export default function GarageBuilder({ catalog, onSaveBeyblade }) {
     <section className="panel garage-panel">
       <div className="panel-title-row">
         <div>
-          <span className="eyebrow">GARAGE</span>
           <h2>Componi il tuo Beyblade</h2>
-          <p>
-            Il System stabilisce quali Part sono disponibili. Ogni carousel mostra
-            esclusivamente i pezzi abilitati nell'anagrafica per quel System.
-          </p>
+          <p>Seleziona prima il System. I carousel vengono creati direttamente dalla configurazione del System.</p>
         </div>
-        <span className="schema-pill">V3.2</span>
+        {systemId && <span className="schema-pill">{systemId}</span>}
       </div>
 
-      <label className="system-selector">
+      <div className="system-picker">
         <span>System</span>
-        <select
-          value={loadout.system}
-          onChange={(event) => updateSystem(event.target.value)}
-        >
-          <option value="">— Seleziona il System —</option>
-          {systems.map((system) => (
-            <option key={system} value={system}>
-              {getSystemLabel(catalog, system)}
-            </option>
-          ))}
+        <select value={systemId} onChange={(event) => selectSystem(event.target.value)}>
+          <option value="">— Seleziona System —</option>
+          {Object.entries(catalog.systems || {}).map(([id, item]) => <option key={id} value={id}>{item.label || id}</option>)}
         </select>
-      </label>
+      </div>
 
-      {!loadout.system ? (
-        <div className="garage-empty">
-          Seleziona un System per visualizzare i pezzi disponibili.
-        </div>
+      {!systemId ? (
+        <div className="garage-empty">Seleziona un System per iniziare la composizione.</div>
       ) : (
         <>
-          <div className="garage-stage">
-            {systemTypes.map((type) => {
-              const definition = catalog.systems[loadout.system]?.slots?.[type];
-              const parts = getPartsForSystem(catalog, type, loadout.system);
-              return (
-                <PartCarousel
-                  key={`${loadout.system}-${type}`}
-                  type={type}
-                  parts={parts}
-                  value={loadout[type]}
-                  required={Boolean(definition?.required)}
-                  onChange={(value) => updatePart(type, value)}
-                />
-              );
-            })}
-          </div>
-
-          <div className="garage-summary">
-            <div className="preview-header">
-              <div>
-                <strong>{getSystemLabel(catalog, loadout.system)}</strong>
-                <small>
-                  {selectedParts.length}/{systemTypes.length} parti selezionate •{' '}
-                  {requiredTypes.length} obbligatorie
-                </small>
-              </div>
-            </div>
-            <StatsPreview totals={totals} />
+          <div className="garage-slots">
+            {PART_TYPES.filter((type) => enabledTypes.includes(type)).map((type) => (
+              <PartSelector
+                key={type}
+                type={type}
+                parts={getPartsForSystem(catalog, systemId, type)}
+                value={loadout[type]}
+                onChange={(value) => updatePart(type, value)}
+              />
+            ))}
           </div>
 
           <label className="selector-field full-width">
             <span>Nome personalizzato</span>
-            <input
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              placeholder="es. Roar Tyranno 3-60B"
-            />
+            <input value={name} onChange={(event) => setName(event.target.value)} placeholder="es. Roar Tyranno 3-60B" />
           </label>
-          <button
-            className="primary-button"
-            onClick={handleSave}
-            disabled={!isLoadoutComplete(catalog, loadout, loadout.system)}
-          >
-            Salva Beyblade
-          </button>
+
+          <div className="preview-header">
+            <div><strong>Stats del Beyblade</strong><small>{selectedParts.length}/{enabledTypes.length} parti selezionate</small></div>
+          </div>
+          <StatsPreview totals={totals} />
+          <button className="primary-button" onClick={handleSave} disabled={!isLoadoutComplete(catalog, systemId, loadout)}>Salva Beyblade</button>
         </>
       )}
     </section>

@@ -1,34 +1,79 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 1,
   "systems": {
     "BX": {
       "label": "Sistema BX",
       "slots": {
-        "blade": { "enabled": true, "required": true },
-        "ratchet": { "enabled": true, "required": true },
-        "bit": { "enabled": true, "required": true },
-        "lock_cip": { "enabled": false, "required": false },
-        "subBlade": { "enabled": false, "required": false }
+        "blade": {
+          "enabled": true,
+          "required": true
+        },
+        "ratchet": {
+          "enabled": true,
+          "required": true
+        },
+        "bit": {
+          "enabled": true,
+          "required": true
+        },
+        "lock_cip": {
+          "enabled": true,
+          "required": false
+        },
+        "subBlade": {
+          "enabled": true,
+          "required": false
+        }
       }
     },
     "UX": {
       "label": "Sistema UX",
       "slots": {
-        "blade": { "enabled": true, "required": true },
-        "ratchet": { "enabled": true, "required": true },
-        "bit": { "enabled": true, "required": true },
-        "lock_cip": { "enabled": false, "required": false },
-        "subBlade": { "enabled": true, "required": false }
+        "blade": {
+          "enabled": true,
+          "required": true
+        },
+        "ratchet": {
+          "enabled": true,
+          "required": true
+        },
+        "bit": {
+          "enabled": true,
+          "required": true
+        },
+        "lock_cip": {
+          "enabled": true,
+          "required": true
+        },
+        "subBlade": {
+          "enabled": false,
+          "required": false
+        }
       }
     },
     "CX": {
       "label": "Sistema CX",
       "slots": {
-        "blade": { "enabled": true, "required": true },
-        "ratchet": { "enabled": true, "required": true },
-        "bit": { "enabled": true, "required": true },
-        "lock_cip": { "enabled": true, "required": false },
-        "subBlade": { "enabled": false, "required": false }
+        "blade": {
+          "enabled": true,
+          "required": true
+        },
+        "ratchet": {
+          "enabled": true,
+          "required": true
+        },
+        "bit": {
+          "enabled": true,
+          "required": true
+        },
+        "lock_cip": {
+          "enabled": true,
+          "required": false
+        },
+        "subBlade": {
+          "enabled": true,
+          "required": false
+        }
       }
     }
   }

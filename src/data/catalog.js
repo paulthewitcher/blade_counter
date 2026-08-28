@@ -6,7 +6,7 @@ import lockCips from '../../catalog/lock_cips.json';
 import subBlades from '../../catalog/sub_blades.json';
 
 export const catalog = Object.freeze({
-  schemaVersion: 2,
+  schemaVersion: 1,
   systems: systems.systems,
   parts: {
     blade: blades.parts,

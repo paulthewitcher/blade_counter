@@ -62,7 +62,7 @@ export default function App() {
     <div className="app-shell">
       <header className="app-header">
         <div className="header-art" style={{ backgroundImage: `linear-gradient(to bottom, rgba(244,246,249,0.02) 40%, #f4f6f9 100%), url(${import.meta.env.BASE_URL}images/battlepass_header.jpg)` }} />
-        <div className="header-overlay"><span>Blade Counter</span><small>data-first rebuild • v3.2.0</small></div>
+        <div className="header-overlay"><span>Blade Counter</span><small>data-first rebuild • v3.3.0</small></div>
         <div className={isConnected ? 'status-dot connected' : 'status-dot'} title={isConnected ? 'Battle Pass connesso' : 'Battle Pass disconnesso'} />
       </header>
       <main className="app-content">

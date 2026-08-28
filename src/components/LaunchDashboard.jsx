@@ -3,7 +3,7 @@ import { getVisibleStats, resolveLoadoutParts, sumStats } from '../domain/parts'
 
 export default function LaunchDashboard({ catalog, data, beyblades, selectedComboId, onSelectCombo, onClearHistory, isConnected, onConnect, onDisconnect, liveRpm }) {
   const selected = beyblades.find((beyblade) => beyblade.id === selectedComboId);
-  const stats = selected ? getVisibleStats(sumStats(resolveLoadoutParts(catalog, selected.parts, selected.system))) : {};
+  const stats = selected ? getVisibleStats(sumStats(resolveLoadoutParts(catalog, selected.parts))) : {};
 
   return (
     <div className="page-stack">
