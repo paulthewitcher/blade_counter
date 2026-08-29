@@ -40,6 +40,19 @@
       "tags": []
     },
     {
+      "id": "9-80",
+      "name": "9-80",
+      "image": "parts/ratchet_9_80.png",
+      "stats": {
+        "attack": 13,
+        "defence": 10,
+        "stamina": 7,
+        "height": 80
+      },
+      "details": {},
+      "tags": []
+    },
+    {
       "id": "1-60",
       "name": "1-60",
       "image": "parts/ratchet_1_60_orange.png",
@@ -48,6 +61,19 @@
         "defence": 9,
         "stamina": 4,
         "height": 60
+      },
+      "details": {},
+      "tags": []
+    },
+    {
+      "id": "5-80-blue",
+      "name": "5-80",
+      "image": "parts/ratchet_5_80_blue.png",
+      "stats": {
+        "attack": 12,
+        "defence": 8,
+        "stamina": 10,
+        "height": 80
       },
       "details": {},
       "tags": []
@@ -85,6 +111,19 @@
         "defence": 11,
         "stamina": 8,
         "height": 80
+      },
+      "details": {},
+      "tags": []
+    },
+    {
+      "id": "4-70_black",
+      "name": "4-70",
+      "image": "parts/ratchet_4_70_black.png",
+      "stats": {
+        "attack": 11,
+        "defence": 12,
+        "stamina": 7,
+        "height": 70
       },
       "details": {},
       "tags": []

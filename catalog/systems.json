@@ -17,11 +17,11 @@
           "required": true
         },
         "lock_cip": {
-          "enabled": true,
+          "enabled": false,
           "required": false
         },
         "subBlade": {
-          "enabled": true,
+          "enabled": false,
           "required": false
         }
       }
@@ -42,8 +42,8 @@
           "required": true
         },
         "lock_cip": {
-          "enabled": true,
-          "required": true
+          "enabled": false,
+          "required": false
         },
         "subBlade": {
           "enabled": false,
@@ -68,11 +68,11 @@
         },
         "lock_cip": {
           "enabled": true,
-          "required": false
+          "required": true
         },
         "subBlade": {
           "enabled": true,
-          "required": false
+          "required": true
         }
       }
     }

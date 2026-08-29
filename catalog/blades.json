@@ -2,6 +2,24 @@
   "schemaVersion": 1,
   "parts": [
     {
+      "id": "reaper_incendio",
+      "name": "Reaper Incendio",
+      "image": "parts/blade_reaper_incendio.png",
+      "stats": {
+        "attack": 40,
+        "defence": 20,
+        "stamina": 40
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "balance"
+      },
+      "tags": [
+        "right-spin",
+        "balance"
+      ]
+    },
+    {
       "id": "roar_tyranno",
       "name": "Roar Tyranno",
       "image": "parts/blade_roar_tyranno.png",
@@ -66,18 +84,20 @@
       ]
     },
     {
-      "id": "wizard_arrow",
-      "name": "Wizard Arrow",
-      "image": "parts/roar_tyranno.png",
+      "id": "arrow_wizard",
+      "name": "Arrow Wizard",
+      "image": "parts/blade_arrow_wizard.png",
       "stats": {
-        "defence": 14,
-        "stamina": 8
+        "attack": 15,
+        "defence": 30,
+        "stamina": 55
       },
       "details": {
+        "type": "stamina",
         "spin direction": "right"
       },
       "tags": [
-        "right-spin"
+        "stamina"
       ]
     },
     {
@@ -216,6 +236,60 @@
       "tags": [
         "right-spin",
         "stamina"
+      ]
+    },
+    {
+      "id": "soar_phoenix_red",
+      "name": "Soar Phoenix Red",
+      "image": "parts/blade_soar_phoenix_red.png",
+      "stats": {
+        "attack": 65,
+        "defence": 30,
+        "stamina": 20
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "attack"
+      },
+      "tags": [
+        "right-spin",
+        "attack"
+      ]
+    },
+    {
+      "id": "soar_phoenix",
+      "name": "Soar Phoenix",
+      "image": "parts/blade_soar_phoenix.png",
+      "stats": {
+        "attack": 60,
+        "defence": 25,
+        "stamina": 15
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "attack"
+      },
+      "tags": [
+        "right-spin",
+        "attack"
+      ]
+    },
+    {
+      "id": "cowl_sphinx",
+      "name": "Cowl Sphinx",
+      "image": "parts/blade_cowl_sphinx.png",
+      "stats": {
+        "attack": 35,
+        "defence": 55,
+        "stamina": 10
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "defence"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
       ]
     }
   ]

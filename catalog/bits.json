@@ -56,24 +56,27 @@
       ]
     },
     {
-      "id": "GN",
-      "name": "Gear Needle (GN)",
-      "image": "parts/bit_ball.png",
+      "id": "gn",
+      "name": "GN",
+      "image": "parts/bit_gn.png",
       "stats": {
-        "defence": 8,
-        "stamina": 8
+        "attack": 20,
+        "defence": 40,
+        "stamina": 10,
+        "dash": 30,
+        "burst": 30
       },
       "details": {
-        "type": "gear_needle"
+        "type": "defence"
       },
       "tags": [
-        "gear-needle"
+        "defence"
       ]
     },
     {
-      "id": "F",
-      "name": "Flat (F)",
-      "image": "parts/bit_ball.png",
+      "id": "f",
+      "name": "F",
+      "image": "parts/bit_f.png",
       "stats": {
         "attack": 15
       },
@@ -129,17 +132,20 @@
     },
     {
       "id": "h",
-      "name": "Hexa (H)",
-      "image": "parts/bit_ball.png",
+      "name": "H",
+      "image": "parts/bit_h.png",
       "stats": {
-        "attack": 8,
-        "defence": 6
+        "attack": 30,
+        "defence": 35,
+        "stamina": 20,
+        "dash": 15,
+        "burst": 80
       },
       "details": {
-        "type": "hexa"
+        "type": "balanced"
       },
       "tags": [
-        "hexa"
+        "balanced"
       ]
     },
     {
@@ -194,6 +200,24 @@
       },
       "tags": [
         "defence"
+      ]
+    },
+    {
+      "id": "k",
+      "name": "K",
+      "image": "parts/bit_k.png",
+      "stats": {
+        "attack": 35,
+        "defence": 25,
+        "stamina": 15,
+        "dash": 25,
+        "burst": 80
+      },
+      "details": {
+        "type": "balanced"
+      },
+      "tags": [
+        "balanced"
       ]
     }
   ]

@@ -1,4 +1,14 @@
 {
   "schemaVersion": 1,
-  "parts": []
+  "parts": [
+    {
+      "id": "sub_t",
+      "name": "T",
+      "image": "parts/sub_t.png",
+      "stats": {},
+      "details": {},
+      "tags": [
+        "sub"
+      ]
+    }]
 }
