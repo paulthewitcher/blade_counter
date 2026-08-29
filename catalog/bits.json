@@ -180,6 +180,24 @@
       "tags": [
         "balanced"
       ]
+    },
+    {
+      "id": "s",
+      "name": "S",
+      "image": "parts/bit_s.png",
+      "stats": {
+        "attack": 10,
+        "defence": 45,
+        "stamina": 35,
+        "dash": 10,
+        "burst": 30
+      },
+      "details": {
+        "type": "defence"
+      },
+      "tags": [
+        "defence"
+      ]
     }
   ]
 }
