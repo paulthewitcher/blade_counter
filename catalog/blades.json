@@ -16,7 +16,7 @@
       },
       "tags": [
         "right-spin",
-        "balance"
+        "defence"
       ]
     },
     {
@@ -38,26 +38,13 @@
       ]
     },
     {
-      "id": "scythe_incendio",
-      "name": "Scythe Incendio",
-      "image": "parts/roar_tyranno.png",
+      "id": "sword_dran_red",
+      "name": "Sword Dran Red",
+      "image": "parts/blade_sword_dran_red.png",
       "stats": {
-        "stamina": 10
-      },
-      "details": {
-        "spin direction": "right"
-      },
-      "tags": [
-        "right-spin"
-      ]
-    },
-    {
-      "id": "dran_sword",
-      "name": "Sword Dran",
-      "image": "parts/roar_tyranno.png",
-      "stats": {
-        "attack": 20,
-        "defence": 5
+        "attack": 55,
+        "defence": 25,
+        "stamina": 20
       },
       "details": {
         "spin direction": "right",
@@ -66,21 +53,6 @@
       "tags": [
         "right-spin",
         "attack"
-      ]
-    },
-    {
-      "id": "hell_scythe",
-      "name": "Hell Scythe",
-      "image": "parts/roar_tyranno.png",
-      "stats": {
-        "stamina": 12,
-        "defence": 4
-      },
-      "details": {
-        "spin direction": "right"
-      },
-      "tags": [
-        "right-spin"
       ]
     },
     {
@@ -98,54 +70,6 @@
       },
       "tags": [
         "stamina"
-      ]
-    },
-    {
-      "id": "knight_shield",
-      "name": "Knight Shield",
-      "image": "parts/roar_tyranno.png",
-      "stats": {
-        "defence": 20
-      },
-      "details": {
-        "spin direction": "right",
-        "type": "defence"
-      },
-      "tags": [
-        "right-spin",
-        "defence"
-      ]
-    },
-    {
-      "id": "wizard_rod",
-      "name": "Wizard Rod",
-      "image": "parts/roar_tyranno.png",
-      "stats": {
-        "stamina": 20
-      },
-      "details": {
-        "spin direction": "right",
-        "type": "stamina"
-      },
-      "tags": [
-        "right-spin",
-        "stamina"
-      ]
-    },
-    {
-      "id": "dran_buster",
-      "name": "Dran Buster",
-      "image": "parts/roar_tyranno.png",
-      "stats": {
-        "attack": 24
-      },
-      "details": {
-        "spin direction": "right",
-        "type": "attack"
-      },
-      "tags": [
-        "right-spin",
-        "attack"
       ]
     },
     {
@@ -282,6 +206,24 @@
         "attack": 35,
         "defence": 55,
         "stamina": 10
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "defence"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
+      ]
+    },
+    {
+      "id": "tackle_goat",
+      "name": "Tackle Goat",
+      "image": "parts/blade_tackle_goat.png",
+      "stats": {
+        "attack": 13,
+        "defence": 65,
+        "stamina": 22
       },
       "details": {
         "spin direction": "right",

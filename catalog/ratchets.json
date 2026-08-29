@@ -4,17 +4,15 @@
     {
       "id": "3-60",
       "name": "3-60",
-      "image": "parts/ratchet_3_60.png",
+      "image": "parts/ratchet_3_60_red.png",
       "stats": {
-        "attack": 12,
+        "attack": 15,
+        "defence": 9,
+        "stamina": 6,
         "height": 60
       },
-      "details": {
-        "type": "balance"
-      },
-      "tags": [
-        "balance"
-      ]
+      "details": {},
+      "tags": []
     },
     {
       "id": "4-60",
@@ -123,6 +121,19 @@
         "attack": 11,
         "defence": 12,
         "stamina": 7,
+        "height": 70
+      },
+      "details": {},
+      "tags": []
+    },
+    {
+      "id": "2-70_red",
+      "name": "2-70",
+      "image": "parts/ratchet_2_70_red.png",
+      "stats": {
+        "attack": 10,
+        "defence": 12,
+        "stamina": 8,
         "height": 70
       },
       "details": {},

@@ -74,60 +74,21 @@
       ]
     },
     {
-      "id": "f",
-      "name": "F",
-      "image": "parts/bit_f.png",
+      "id": "n",
+      "name": "N",
+      "image": "parts/bit_n.png",
       "stats": {
-        "attack": 15
+        "attack": 10,
+        "defence": 50,
+        "stamina": 30,
+        "dash": 10,
+        "burst": 30
       },
       "details": {
-        "type": "flat"
+        "type": "defence"
       },
       "tags": [
-        "flat"
-      ]
-    },
-    {
-      "id": "T",
-      "name": "Taper (T)",
-      "image": "parts/bit_ball.png",
-      "stats": {
-        "stamina": 8,
-        "defence": 4
-      },
-      "details": {
-        "type": "taper"
-      },
-      "tags": [
-        "taper"
-      ]
-    },
-    {
-      "id": "N",
-      "name": "Needle (N)",
-      "image": "parts/bit_ball.png",
-      "stats": {
-        "defence": 10
-      },
-      "details": {
-        "type": "needle"
-      },
-      "tags": [
-        "needle"
-      ]
-    },
-    {
-      "id": "O",
-      "name": "Orb (O)",
-      "image": "parts/bit_ball.png",
-      "stats": {
-        "stamina": 14
-      },
-      "details": {
-        "type": "orb"
-      },
-      "tags": [
-        "orb"
+        "defence"
       ]
     },
     {
