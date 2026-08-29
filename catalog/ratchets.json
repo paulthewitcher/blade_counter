@@ -79,9 +79,11 @@
     {
       "id": "5-60",
       "name": "5-60",
-      "image": "parts/ratchet_3_60.png",
+      "image": "parts/ratchet_5_60.png",
       "stats": {
-        "defence": 4,
+        "attack": 12,
+        "defence": 9,
+        "stamina": 9,
         "height": 60
       },
       "details": {},

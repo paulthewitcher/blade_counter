@@ -198,6 +198,24 @@
       "tags": [
         "defence"
       ]
+    },
+    {
+      "id": "p",
+      "name": "P",
+      "image": "parts/bit_p.png",
+      "stats": {
+        "attack": 25,
+        "defence": 25,
+        "stamina": 25,
+        "dash": 25,
+        "burst": 80
+      },
+      "details": {
+        "type": "balanced"
+      },
+      "tags": [
+        "balanced"
+      ]
     }
   ]
 }

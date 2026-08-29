@@ -251,6 +251,24 @@
         "right-spin",
         "defence"
       ]
+    },
+    {
+      "id": "claw_leon",
+      "name": "Claw Leon",
+      "image": "parts/blade_claw_leon.png",
+      "stats": {
+        "attack": 40,
+        "defence": 40,
+        "stamina": 20
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "balance"
+      },
+      "tags": [
+        "right-spin",
+        "balance"
+      ]
     }
   ]
 }
