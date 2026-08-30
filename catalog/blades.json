@@ -4,7 +4,7 @@
     {
       "id": "reaper_incendio",
       "name": "Reaper Incendio",
-      "image": "parts/blade_reaper_incendio.png",
+      "image": "parts/blade_reaper_incendio.webp",
       "stats": {
         "attack": 40,
         "defence": 20,
@@ -22,7 +22,7 @@
     {
       "id": "roar_tyranno",
       "name": "Roar Tyranno",
-      "image": "parts/blade_roar_tyranno.png",
+      "image": "parts/blade_roar_tyranno.webp",
       "stats": {
         "attack": 60,
         "defence": 10,
@@ -40,7 +40,7 @@
     {
       "id": "sword_dran_red",
       "name": "Sword Dran Red",
-      "image": "parts/blade_sword_dran_red.png",
+      "image": "parts/blade_sword_dran_red.webp",
       "stats": {
         "attack": 55,
         "defence": 25,
@@ -58,7 +58,7 @@
     {
       "id": "arrow_wizard",
       "name": "Arrow Wizard",
-      "image": "parts/blade_arrow_wizard.png",
+      "image": "parts/blade_arrow_wizard.webp",
       "stats": {
         "attack": 15,
         "defence": 30,
@@ -75,7 +75,7 @@
     {
       "id": "knife_shinobi",
       "name": "Knife Shinobi",
-      "image": "parts/blade_knife_shinobi.png",
+      "image": "parts/blade_knife_shinobi.webp",
       "stats": {
         "attack": 23,
         "defence": 50,
@@ -93,7 +93,7 @@
     {
       "id": "keel_shark_green",
       "name": "Keel Shark",
-      "image": "parts/blade_kill_shark_green.png",
+      "image": "parts/blade_kill_shark_green.webp",
       "stats": {
         "attack": 60,
         "defence": 25,
@@ -111,7 +111,7 @@
     {
       "id": "rock_golem",
       "name": "Rock Golem",
-      "image": "parts/blade_rock_golem.png",
+      "image": "parts/blade_rock_golem.webp",
       "stats": {
         "attack": 30,
         "defence": 60,
@@ -129,7 +129,7 @@
     {
       "id": "talon_ptera",
       "name": "Talon Ptera",
-      "image": "parts/blade_talon_ptera.png",
+      "image": "parts/blade_talon_ptera.webp",
       "stats": {
         "attack": 27,
         "defence": 23,
@@ -147,7 +147,7 @@
     {
       "id": "wand_wizard",
       "name": "Wand Wizard",
-      "image": "parts/blade_wand_wizard.png",
+      "image": "parts/blade_wand_wizard.webp",
       "stats": {
         "attack": 15,
         "defence": 25,
@@ -165,7 +165,7 @@
     {
       "id": "soar_phoenix_red",
       "name": "Soar Phoenix Red",
-      "image": "parts/blade_soar_phoenix_red.png",
+      "image": "parts/blade_soar_phoenix_red.webp",
       "stats": {
         "attack": 65,
         "defence": 30,
@@ -183,7 +183,7 @@
     {
       "id": "soar_phoenix",
       "name": "Soar Phoenix",
-      "image": "parts/blade_soar_phoenix.png",
+      "image": "parts/blade_soar_phoenix.webp",
       "stats": {
         "attack": 60,
         "defence": 25,
@@ -201,7 +201,7 @@
     {
       "id": "cowl_sphinx",
       "name": "Cowl Sphinx",
-      "image": "parts/blade_cowl_sphinx.png",
+      "image": "parts/blade_cowl_sphinx.webp",
       "stats": {
         "attack": 35,
         "defence": 55,
@@ -219,7 +219,7 @@
     {
       "id": "tackle_goat",
       "name": "Tackle Goat",
-      "image": "parts/blade_tackle_goat.png",
+      "image": "parts/blade_tackle_goat.webp",
       "stats": {
         "attack": 13,
         "defence": 65,
@@ -237,7 +237,7 @@
     {
       "id": "savage_bear",
       "name": "Savage Bear",
-      "image": "parts/blade_savage_bear.png",
+      "image": "parts/blade_savage_bear.webp",
       "stats": {
         "attack": 17,
         "defence": 50,
@@ -255,7 +255,7 @@
     {
       "id": "claw_leon",
       "name": "Claw Leon",
-      "image": "parts/blade_claw_leon.png",
+      "image": "parts/blade_claw_leon.webp",
       "stats": {
         "attack": 40,
         "defence": 40,

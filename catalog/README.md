@@ -25,3 +25,10 @@ Ogni Part usa:
 ```
 
 Le stats sono filtrate dalla whitelist in `src/config/stats.js`. I dettagli sono filtrati dalla whitelist in `src/config/details.js`.
+
+## Immagini e performance
+
+Le immagini dei Part sono memorizzate in `public/parts/` in formato WebP.
+Per il Garage vengono mantenute dimensioni massime di circa 512 px e un leggero crop dei margini bianchi. Il codice usa il fallback `public/default.png` quando l'immagine non è disponibile.
+
+Quando aggiungi una nuova immagine, mantieni un file sorgente di buona qualità fuori dal deploy oppure ottimizzalo prima di inserirlo in `public/parts/`. L'anagrafica deve puntare al file WebP finale.

@@ -4,11 +4,12 @@
     {
       "id": "sub_t",
       "name": "T",
-      "image": "parts/sub_t.png",
+      "image": "parts/sub_t.webp",
       "stats": {},
       "details": {},
       "tags": [
         "sub"
       ]
-    }]
+    }
+  ]
 }

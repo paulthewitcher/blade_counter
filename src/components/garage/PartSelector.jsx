@@ -51,7 +51,16 @@ export default function PartSelector({ type, parts, value, onChange }) {
       <div className="carousel-row">
         <button type="button" className="carousel-arrow" onClick={previous} aria-label={`Precedente ${definition?.label || type}`}>‹</button>
         <button type="button" className="carousel-card" onClick={next} aria-label={`Successivo ${definition?.label || type}`}>
-          <img src={imageSrc} alt={displayPart?.name || definition?.label || type} onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = DEFAULT_IMAGE; }} />
+          <img
+            src={imageSrc}
+            alt={displayPart?.name || definition?.label || type}
+            loading="eager"
+            decoding="async"
+            onError={(event) => {
+              event.currentTarget.onerror = null;
+              event.currentTarget.src = DEFAULT_IMAGE;
+            }}
+          />
           <strong>{current?.name || 'Seleziona'}</strong>
         </button>
         <button type="button" className="carousel-arrow" onClick={next} aria-label={`Successivo ${definition?.label || type}`}>›</button>

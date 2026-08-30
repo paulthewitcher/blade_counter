@@ -4,7 +4,7 @@
     {
       "id": "3-60",
       "name": "3-60",
-      "image": "parts/ratchet_3_60_red.png",
+      "image": "parts/ratchet_3_60_red.webp",
       "stats": {
         "attack": 15,
         "defence": 9,
@@ -17,7 +17,7 @@
     {
       "id": "9-60",
       "name": "9-60",
-      "image": "parts/ratchet_9_60.png",
+      "image": "parts/ratchet_9_60.webp",
       "stats": {
         "attack": 13,
         "defence": 10,
@@ -30,7 +30,7 @@
     {
       "id": "9-80",
       "name": "9-80",
-      "image": "parts/ratchet_9_80.png",
+      "image": "parts/ratchet_9_80.webp",
       "stats": {
         "attack": 13,
         "defence": 10,
@@ -43,7 +43,7 @@
     {
       "id": "1-60",
       "name": "1-60",
-      "image": "parts/ratchet_1_60_orange.png",
+      "image": "parts/ratchet_1_60_orange.webp",
       "stats": {
         "attack": 17,
         "defence": 9,
@@ -56,7 +56,7 @@
     {
       "id": "5-80-blue",
       "name": "5-80",
-      "image": "parts/ratchet_5_80_blue.png",
+      "image": "parts/ratchet_5_80_blue.webp",
       "stats": {
         "attack": 12,
         "defence": 8,
@@ -69,7 +69,7 @@
     {
       "id": "5-60",
       "name": "5-60",
-      "image": "parts/ratchet_5_60.png",
+      "image": "parts/ratchet_5_60.webp",
       "stats": {
         "attack": 12,
         "defence": 9,
@@ -82,7 +82,7 @@
     {
       "id": "3-80-green-water",
       "name": "3-80",
-      "image": "parts/ratchet_3_80_green_water.png",
+      "image": "parts/ratchet_3_80_green_water.webp",
       "stats": {
         "attack": 15,
         "defence": 7,
@@ -95,7 +95,7 @@
     {
       "id": "4-80-yellow-flux",
       "name": "4-80",
-      "image": "parts/ratchet_4_80_yellow_flux.png",
+      "image": "parts/ratchet_4_80_yellow_flux.webp",
       "stats": {
         "attack": 11,
         "defence": 11,
@@ -108,7 +108,7 @@
     {
       "id": "4-70_black",
       "name": "4-70",
-      "image": "parts/ratchet_4_70_black.png",
+      "image": "parts/ratchet_4_70_black.webp",
       "stats": {
         "attack": 11,
         "defence": 12,
@@ -121,7 +121,7 @@
     {
       "id": "2-70_red",
       "name": "2-70",
-      "image": "parts/ratchet_2_70_red.png",
+      "image": "parts/ratchet_2_70_red.webp",
       "stats": {
         "attack": 10,
         "defence": 12,

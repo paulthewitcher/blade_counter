@@ -4,7 +4,7 @@
     {
       "id": "b",
       "name": "B",
-      "image": "parts/bit_b.png",
+      "image": "parts/bit_b.webp",
       "stats": {
         "attack": 15,
         "defence": 25,
@@ -22,7 +22,7 @@
     {
       "id": "r",
       "name": "R",
-      "image": "parts/bit_r.png",
+      "image": "parts/bit_r.webp",
       "stats": {
         "attack": 40,
         "defence": 10,
@@ -40,7 +40,7 @@
     {
       "id": "gf",
       "name": "GF",
-      "image": "parts/bit_gf.png",
+      "image": "parts/bit_gf.webp",
       "stats": {
         "attack": 50,
         "defence": 5,
@@ -58,7 +58,7 @@
     {
       "id": "gn",
       "name": "GN",
-      "image": "parts/bit_gn.png",
+      "image": "parts/bit_gn.webp",
       "stats": {
         "attack": 20,
         "defence": 40,
@@ -76,7 +76,7 @@
     {
       "id": "n",
       "name": "N",
-      "image": "parts/bit_n.png",
+      "image": "parts/bit_n.webp",
       "stats": {
         "attack": 10,
         "defence": 50,
@@ -94,7 +94,7 @@
     {
       "id": "h",
       "name": "H",
-      "image": "parts/bit_h.png",
+      "image": "parts/bit_h.webp",
       "stats": {
         "attack": 30,
         "defence": 35,
@@ -112,7 +112,7 @@
     {
       "id": "hn",
       "name": "HN",
-      "image": "parts/bit_hn.png",
+      "image": "parts/bit_hn.webp",
       "stats": {
         "attack": 15,
         "defence": 55,
@@ -130,7 +130,7 @@
     {
       "id": "f",
       "name": "F",
-      "image": "parts/bit_f.png",
+      "image": "parts/bit_f.webp",
       "stats": {
         "attack": 40,
         "defence": 15,
@@ -148,7 +148,7 @@
     {
       "id": "un",
       "name": "UN",
-      "image": "parts/bit_un.png",
+      "image": "parts/bit_un.webp",
       "stats": {
         "attack": 10,
         "defence": 60,
@@ -166,7 +166,7 @@
     {
       "id": "k",
       "name": "K",
-      "image": "parts/bit_k.png",
+      "image": "parts/bit_k.webp",
       "stats": {
         "attack": 35,
         "defence": 25,
@@ -184,7 +184,7 @@
     {
       "id": "s",
       "name": "S",
-      "image": "parts/bit_s.png",
+      "image": "parts/bit_s.webp",
       "stats": {
         "attack": 10,
         "defence": 45,
@@ -202,7 +202,7 @@
     {
       "id": "p",
       "name": "P",
-      "image": "parts/bit_p.png",
+      "image": "parts/bit_p.webp",
       "stats": {
         "attack": 25,
         "defence": 25,
@@ -220,7 +220,7 @@
     {
       "id": "l",
       "name": "L",
-      "image": "parts/bit_l.png",
+      "image": "parts/bit_l.webp",
       "stats": {
         "attack": 40,
         "defence": 5,
@@ -238,7 +238,7 @@
     {
       "id": "lf",
       "name": "LF",
-      "image": "parts/bit_lf.png",
+      "image": "parts/bit_lf.webp",
       "stats": {
         "attack": 45,
         "defence": 5,
@@ -256,7 +256,7 @@
     {
       "id": "uf",
       "name": "UF",
-      "image": "parts/bit_uf.png",
+      "image": "parts/bit_uf.webp",
       "stats": {
         "attack": 55,
         "defence": 5,
