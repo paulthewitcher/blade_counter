@@ -1,14 +1,16 @@
 import { useMemo } from 'react';
 import { PART_DEFINITIONS } from '../../config/partDefinitions.js';
 
-const DEFAULT_IMAGE = `${import.meta.env.BASE_URL}default.png`;
+const DEFAULT_IMAGE = `${import.meta.env.BASE_URL}images/point_.webp`;
+const FALLBACK_IMAGE = `${import.meta.env.BASE_URL}default.png`;
 
 export default function PartSelector({ type, parts, value, onChange }) {
   const definition = PART_DEFINITIONS[type];
   const selectedIndex = parts.findIndex((part) => part.id === value);
   const current = selectedIndex >= 0 ? parts[selectedIndex] : null;
-  const displayIndex = selectedIndex >= 0 ? selectedIndex : 0;
-  const displayPart = current || parts[displayIndex] || null;
+  // Before the user interacts with a carousel, keep it on the neutral placeholder.
+  // Once a direction is clicked (or an existing value is loaded), show the selected part.
+  const displayPart = current;
 
   const previous = () => {
     if (!parts.length) return;
@@ -53,12 +55,12 @@ export default function PartSelector({ type, parts, value, onChange }) {
         <button type="button" className="carousel-card" onClick={next} aria-label={`Successivo ${definition?.label || type}`}>
           <img
             src={imageSrc}
-            alt={displayPart?.name || definition?.label || type}
+            alt={displayPart?.name || `Seleziona ${definition?.label || type}`}
             loading="eager"
             decoding="async"
             onError={(event) => {
               event.currentTarget.onerror = null;
-              event.currentTarget.src = DEFAULT_IMAGE;
+              event.currentTarget.src = FALLBACK_IMAGE;
             }}
           />
           <strong>{current?.name || 'Seleziona'}</strong>
