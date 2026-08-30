@@ -179,3 +179,22 @@ test('favorite state uses isFavorite with legacy favorite migration support', as
   assert.match(raw, /isFavorite/);
   assert.match(raw, /favorite/);
 });
+
+test('migrated beyblades preserve their system after reload', async () => {
+  const { migrateAppData } = await import('../src/domain/storage.js');
+  const migrated = migrateAppData({
+    schemaVersion: 2,
+    beyblades: [{
+      id: 'bb1',
+      name: 'Roar Tyranno',
+      system: 'UX',
+      parts: { blade: 'blade1', ratchet: 'ratchet1', bit: 'bit1', lock_cip: 'lock1', subBlade: '' },
+      isFavorite: true,
+    }],
+  });
+
+  assert.equal(migrated.beyblades[0].system, 'UX');
+  assert.equal(migrated.beyblades[0].parts.blade, 'blade1');
+  assert.equal(migrated.beyblades[0].isFavorite, true);
+});
+
