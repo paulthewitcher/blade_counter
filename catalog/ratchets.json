@@ -15,16 +15,6 @@
       "tags": []
     },
     {
-      "id": "4-60",
-      "name": "4-60",
-      "image": "parts/ratchet_3_60.png",
-      "stats": {
-        "height": 60
-      },
-      "details": {},
-      "tags": []
-    },
-    {
       "id": "9-60",
       "name": "9-60",
       "image": "parts/ratchet_9_60.png",

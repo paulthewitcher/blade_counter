@@ -45,7 +45,7 @@ export default function GarageBuilder({ catalog, onSaveBeyblade }) {
       <div className="panel-title-row">
         <div>
           <h2>Componi il tuo Beyblade</h2>
-          <p>Seleziona prima il System. I carousel vengono creati direttamente dalla configurazione del System.</p>
+          <p></p>
         </div>
         {systemId && <span className="schema-pill">{systemId}</span>}
       </div>
