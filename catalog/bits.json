@@ -216,6 +216,60 @@
       "tags": [
         "balanced"
       ]
+    },
+    {
+      "id": "l",
+      "name": "L",
+      "image": "parts/bit_l.png",
+      "stats": {
+        "attack": 40,
+        "defence": 5,
+        "stamina": 15,
+        "dash": 40,
+        "burst": 80
+      },
+      "details": {
+        "type": "attack"
+      },
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "lf",
+      "name": "LF",
+      "image": "parts/bit_lf.png",
+      "stats": {
+        "attack": 45,
+        "defence": 5,
+        "stamina": 10,
+        "dash": 40,
+        "burst": 80
+      },
+      "details": {
+        "type": "attack"
+      },
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "uf",
+      "name": "UF",
+      "image": "parts/bit_uf.png",
+      "stats": {
+        "attack": 55,
+        "defence": 5,
+        "stamina": 5,
+        "dash": 35,
+        "burst": 80
+      },
+      "details": {
+        "type": "attack"
+      },
+      "tags": [
+        "attack"
+      ]
     }
   ]
 }
