@@ -237,7 +237,7 @@
     {
       "id": "savage_bear",
       "name": "Savage Bear",
-      "image": "parts/blade_savege_bear.png",
+      "image": "parts/blade_savage_bear.png",
       "stats": {
         "attack": 17,
         "defence": 50,
