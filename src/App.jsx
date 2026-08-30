@@ -6,6 +6,7 @@ import LaunchDashboard from './components/LaunchDashboard';
 import Operations from './components/operations/Operations';
 import { useAppData } from './hooks/useAppData';
 import { useBattlePass } from './hooks/useBattlePass';
+import { APP_VERSION } from './config/app.js';
 import './app/app.css';
 
 export default function App() {
@@ -50,9 +51,9 @@ export default function App() {
 
   const toggleFavorite = (id) => {
     setData((current) => {
-      const updated = current.beyblades.map((beyblade) => beyblade.id === id ? { ...beyblade, favorite: !beyblade.favorite } : beyblade);
+      const updated = current.beyblades.map((beyblade) => beyblade.id === id ? { ...beyblade, isFavorite: !beyblade.isFavorite } : beyblade);
       const toggled = updated.find((beyblade) => beyblade.id === id);
-      if (toggled && !toggled.favorite && toggled.id === selectedComboId) setSelectedComboId('');
+      if (toggled && !toggled.isFavorite && toggled.id === selectedComboId) setSelectedComboId('');
       return { ...current, beyblades: updated };
     });
   };
@@ -66,7 +67,7 @@ export default function App() {
     <div className="app-shell">
       <header className="app-header">
         <div className="header-art" style={{ backgroundImage: `linear-gradient(to bottom, rgba(244,246,249,0.02) 40%, #f4f6f9 100%), url(${import.meta.env.BASE_URL}images/battlepass_header.webp)` }} />
-        <div className="header-overlay"><span>Blade Counter</span><small>data-first rebuild • v4.0.0</small></div>
+        <div className="header-overlay"><span>Blade Counter</span><small>data-first rebuild • v{APP_VERSION}</small></div>
         <div className={isConnected ? 'status-dot connected' : 'status-dot'} title={isConnected ? 'Battle Pass connesso' : 'Battle Pass disconnesso'} />
       </header>
       <main className="app-content">

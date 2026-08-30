@@ -87,7 +87,7 @@ export const createBeyblade = (catalog, systemId, loadout, name = '') => {
     name: name.trim() || buildBeybladeName(parts) || 'Nuovo Beyblade',
     system: systemId,
     parts: normalizedLoadout,
-    favorite: false,
+    isFavorite: false,
     createdAt: new Date().toISOString(),
   };
 };

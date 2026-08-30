@@ -13,7 +13,7 @@ const normalizeBeyblade = (beyblade) => ({
   id: String(beyblade?.id ?? ''),
   name: String(beyblade?.name || 'Nuovo Beyblade'),
   parts: { ...emptyPartReferences(), ...(beyblade?.parts || {}) },
-  favorite: Boolean(beyblade?.favorite),
+  isFavorite: Boolean(beyblade?.isFavorite ?? beyblade?.favorite),
   createdAt: beyblade?.createdAt || new Date().toISOString(),
 });
 

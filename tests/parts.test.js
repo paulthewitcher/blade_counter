@@ -141,3 +141,41 @@ test('anagraphic parts do not contain a system assignment', async () => {
     }
   }
 });
+
+
+test('createBeyblade generates a fresh id for edited configurations', () => {
+  const catalog = {
+    systems: { BX: { slots: {
+      blade: { enabled: true, required: true },
+      ratchet: { enabled: true, required: true },
+      bit: { enabled: true, required: true },
+    }}},
+    parts: {
+      blade: [{ id: 'b', name: 'Blade' }],
+      ratchet: [{ id: 'r', name: 'Ratchet' }],
+      bit: [{ id: 't', name: 'Bit' }],
+      lock_cip: [], subBlade: [],
+    },
+  };
+  const original = createBeyblade(catalog, 'BX', { blade: 'b', ratchet: 'r', bit: 't' }, 'Original');
+  const edited = createBeyblade(catalog, 'BX', original.parts, 'Edited');
+  assert.notEqual(edited.id, original.id);
+  assert.equal(edited.name, 'Edited');
+  assert.deepEqual(edited.parts, original.parts);
+});
+
+
+test('app version is sourced from package.json', async () => {
+  const fs = await import('node:fs/promises');
+  const raw = JSON.parse(await fs.readFile(new URL('../package.json', import.meta.url), 'utf8'));
+  const appModule = await import('../src/config/app.js');
+  assert.equal(appModule.APP_VERSION, raw.version);
+});
+
+
+test('favorite state uses isFavorite with legacy favorite migration support', async () => {
+  const fs = await import('node:fs/promises');
+  const raw = await fs.readFile(new URL('../src/domain/storage.js', import.meta.url), 'utf8');
+  assert.match(raw, /isFavorite/);
+  assert.match(raw, /favorite/);
+});

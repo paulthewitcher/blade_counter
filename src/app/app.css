@@ -24,7 +24,6 @@ button { -webkit-tap-highlight-color: transparent; }
 .panel h2 { margin: 0; font-size: 18px; }
 .panel h3 { margin: 0; font-size: 15px; }
 .schema-pill { padding: 5px 8px; border-radius: 999px; background: #f1f5f9; color: #475569; font-size: 9px; font-weight: 800; letter-spacing: .08em; }
-.selectors-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
 .system-picker { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
 .system-picker > span { font-size:11px; font-weight:800; color:#475569; text-transform:uppercase; letter-spacing:.05em; }
 .system-picker select { width:100%; border:1px solid #dbe2ea; border-radius:12px; background:#fff; padding:12px; color:#0f172a; }
@@ -53,12 +52,13 @@ button { -webkit-tap-highlight-color: transparent; }
 .stat-card span { font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: 700; }
 .stat-card strong { font-size: 18px; }
 .stats-empty { color: #94a3b8; font-size: 12px; padding: 10px 0 14px; }
-.primary-button, .secondary-button, .connect-button, .disconnect-button, .danger-button, .text-button, .icon-button { border: 0; cursor: pointer; }
+.primary-button, .secondary-button, .connect-button, .disconnect-button, .danger-button, .text-button, .icon-button, .edit-button { border: 0; cursor: pointer; }
 .primary-button, .connect-button { width: 100%; padding: 12px 15px; border-radius: 12px; background: #111; color: #fff; font-weight: 800; }
 .primary-button:disabled { opacity: .4; cursor: default; }
 .secondary-button { width: 100%; padding: 12px 15px; border-radius: 12px; background: #f1f5f9; color: #111; font-weight: 800; }
 .disconnect-button { padding: 10px 12px; border-radius: 12px; background: #fee2e2; color: #b91c1c; font-weight: 800; white-space: nowrap; }
-.danger-button { margin-top: 10px; padding: 8px 10px; border-radius: 10px; background: #fef2f2; color: #b91c1c; font-size: 11px; font-weight: 800; }
+.danger-button { padding: 8px 10px; border-radius: 10px; background: #fef2f2; color: #b91c1c; font-size: 11px; font-weight: 800; margin: 0; }
+.edit-button { padding: 8px 10px; border-radius: 10px; background: #dbeafe; color: #1d4ed8; font-size: 11px; font-weight: 800; }
 .text-button { padding: 6px 8px; background: transparent; color: #64748b; font-size: 11px; font-weight: 800; }
 .modal-backdrop { position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(15,23,42,.42); backdrop-filter:blur(3px); }
 .confirm-modal { width:min(360px,100%); border-radius:18px; background:#fff; padding:20px; box-shadow:0 24px 60px rgba(15,23,42,.22); }
@@ -68,13 +68,12 @@ button { -webkit-tap-highlight-color: transparent; }
 .cancel-button, .confirm-delete-button { border:0; border-radius:11px; padding:11px 14px; font-weight:800; cursor:pointer; }
 .cancel-button { background:#bdeaf7; color:#075985; }
 .confirm-delete-button { background:#dc2626; color:#fff; }
-.operation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.notice { padding: 10px 12px; border-radius: 12px; background: #f8fafc; color: #475569; font-size: 12px; }
 .combo-list { display: flex; flex-direction: column; gap: 10px; }
 .combo-card { border: 1px solid #e7ebef; border-radius: 14px; padding: 12px; }
 .combo-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
 .combo-card p { font-size: 11px; margin-top: 4px; color: #94a3b8; }
 .icon-button { background: transparent; font-size: 22px; line-height: 1; padding: 0; }
+.combo-card-actions { display:flex; gap:8px; margin-top: 4px; }
 .combo-select-list { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; }
 .combo-select { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; padding: 10px 12px; font-weight: 700; color: #334155; }
 .combo-select.selected { background: #111; border-color: #111; color: #fff; }
@@ -90,13 +89,22 @@ button { -webkit-tap-highlight-color: transparent; }
 .nav-button span { font-size: 22px; line-height: 1; }
 .nav-button small { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
 .nav-button.active { color: #111; background: #fafafa; }
-@media (max-width: 640px) { .selectors-grid, .modal-backdrop { position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(15,23,42,.42); backdrop-filter:blur(3px); }
-.confirm-modal { width:min(360px,100%); border-radius:18px; background:#fff; padding:20px; box-shadow:0 24px 60px rgba(15,23,42,.22); }
-.confirm-modal h3 { margin:0; font-size:18px; color:#0f172a; }
-.confirm-modal p { margin:7px 0 18px; color:#64748b; font-size:12px; line-height:1.45; }
-.confirm-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.cancel-button, .confirm-delete-button { border:0; border-radius:11px; padding:11px 14px; font-weight:800; cursor:pointer; }
-.cancel-button { background:#bdeaf7; color:#075985; }
-.confirm-delete-button { background:#dc2626; color:#fff; }
-.operation-grid { grid-template-columns: 1fr; }
-  .carousel-card { min-height: 150px; } .carousel-card img { width:118px; height:118px; } .carousel-row { grid-template-columns:38px minmax(0,1fr) 38px; } .carousel-arrow { width:38px; height:38px; } .hero-status { align-items: flex-start; } .hero-copy h1 { font-size: 24px; } }
+.active-garage-grid { display: grid; grid-template-rows: auto minmax(0, 1fr); gap: 10px; }
+.active-garage-header { min-width: 0; }
+.active-garage-header select { width:100%; border:1px solid #dbe2ea; border-radius:12px; background:#fff; padding:11px 12px; color:#0f172a; }
+.active-garage-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; max-height: 204px; overflow-y: auto; padding-right: 3px; }
+.active-garage-card { min-width:0; display:grid; grid-template-columns:48px minmax(0,1fr); align-items:center; gap:10px; width:100%; border:1px solid #e7ebef; border-radius:12px; background:#fff; padding:6px 9px; color:#0f172a; text-align:left; cursor:pointer; }
+.active-garage-card img { width:48px; height:48px; object-fit:contain; display:block; }
+.active-garage-card span { min-width:0; font-size:13px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.active-garage-card.selected { border-color:#111; background:#f8fafc; }
+.garage-save-actions { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; margin-top:10px; }
+@media (max-width: 640px) {
+  .operation-grid { grid-template-columns: 1fr; }
+  .carousel-card { min-height: 150px; }
+  .carousel-card img { width:118px; height:118px; }
+  .carousel-row { grid-template-columns:38px minmax(0,1fr) 38px; }
+  .carousel-arrow { width:38px; height:38px; }
+  .hero-status { align-items: flex-start; }
+  .hero-copy h1 { font-size: 24px; }
+  .garage-save-actions { grid-template-columns: 1fr; }
+}
