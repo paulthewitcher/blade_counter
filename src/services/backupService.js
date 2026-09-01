@@ -1,11 +1,12 @@
 import { DATA_SCHEMA_VERSION, normalizeAppData } from '../domain/storage';
 
-export const exportBackup = (data) => {
+export const exportBackup = (data, catalog) => {
+  const sanitized = normalizeAppData(data, catalog);
   const payload = {
     app: 'blade_counter',
     schemaVersion: DATA_SCHEMA_VERSION,
     exportedAt: new Date().toISOString(),
-    data: normalizeAppData(data),
+    data: sanitized,
   };
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -16,7 +17,7 @@ export const exportBackup = (data) => {
   URL.revokeObjectURL(url);
 };
 
-export const parseBackupFile = async (file) => {
+export const parseBackupFile = async (file, catalog) => {
   const parsed = JSON.parse(await file.text());
-  return normalizeAppData(parsed?.data ?? parsed);
+  return normalizeAppData(parsed?.data ?? parsed, catalog);
 };

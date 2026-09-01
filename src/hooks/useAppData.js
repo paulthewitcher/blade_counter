@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { loadAppData, saveAppData } from '../domain/storage';
 
-export const useAppData = () => {
-  const [data, setData] = useState(() => loadAppData());
+export const useAppData = (catalog) => {
+  const [data, setData] = useState(() => loadAppData(catalog));
 
   useEffect(() => {
-    saveAppData(data);
-  }, [data]);
+    saveAppData(data, catalog);
+  }, [data, catalog]);
 
   return [data, setData];
 };

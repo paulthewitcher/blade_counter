@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { PART_DEFINITIONS } from '../../config/partDefinitions.js';
+import StatsPreview from './StatsPreview';
 
 const DEFAULT_IMAGE = `${import.meta.env.BASE_URL}images/point_.webp`;
 const FALLBACK_IMAGE = `${import.meta.env.BASE_URL}default.png`;
@@ -68,6 +69,7 @@ export default function PartSelector({ type, parts, value, onChange }) {
         <button type="button" className="carousel-arrow" onClick={next} aria-label={`Successivo ${definition?.label || type}`}>›</button>
       </div>
       {current?.details?.type && <div className="carousel-detail">{current.details.type}</div>}
+      {current && <StatsPreview totals={current.stats || {}} />}
     </section>
   );
 }

@@ -1,13 +1,7 @@
 import React, { useMemo } from 'react';
 import StatsPreview from './garage/StatsPreview';
-import { getVisibleStats, getPartById, resolveLoadoutParts, sumStats } from '../domain/parts';
-
-const DEFAULT_IMAGE = `${import.meta.env.BASE_URL}default.png`;
-
-const getPartImage = (catalog, type, id) => {
-  const part = getPartById(catalog, type, id);
-  return part?.image ? `${import.meta.env.BASE_URL}${part.image.replace(/^\/+/, '')}` : DEFAULT_IMAGE;
-};
+import { getVisibleStats, resolveLoadoutParts, sumStats } from '../domain/parts';
+import BeybladeThumbnail from './shared/BeybladeThumbnail';
 
 export default function LaunchDashboard({ catalog, data, beyblades, selectedComboId, onSelectCombo, onClearHistory, isConnected, onConnect, onDisconnect, liveRpm }) {
   const activeBeyblades = useMemo(() => beyblades.filter((beyblade) => beyblade.isFavorite === true), [beyblades]);
@@ -44,18 +38,11 @@ export default function LaunchDashboard({ catalog, data, beyblades, selectedComb
                 onClick={() => onSelectCombo(beyblade.id)}
                 className={selectedComboId === beyblade.id ? 'active-garage-card selected' : 'active-garage-card'}
               >
-                <img
-                  src={getPartImage(catalog, 'blade', beyblade.parts?.blade)}
-                  alt=""
-                  aria-hidden="true"
-                  width="48"
-                  height="48"
-                  loading={index < 6 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  onError={(event) => {
-                    event.currentTarget.onerror = null;
-                    event.currentTarget.src = DEFAULT_IMAGE;
-                  }}
+                <BeybladeThumbnail
+                  catalog={catalog}
+                  beyblade={beyblade}
+                  size={48}
+                  className="active-garage-thumbnail"
                 />
                 <span>{beyblade.name}</span>
               </button>

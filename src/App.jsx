@@ -11,7 +11,7 @@ import './app/app.css';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
-  const [data, setData] = useAppData();
+  const [data, setData] = useAppData(catalog);
   const [selectedComboId, setSelectedComboId] = useState('');
   const [liveRpm, setLiveRpm] = useState(0);
   const [logs, setLogs] = useState([]);
@@ -73,7 +73,7 @@ export default function App() {
       <main className="app-content">
         {activeTab === 'home' && <LaunchDashboard catalog={catalog} data={data} beyblades={beyblades} selectedComboId={selectedComboId} onSelectCombo={setSelectedComboId} onClearHistory={() => setData((current) => ({ ...current, launchHistory: [] }))} isConnected={isConnected} onConnect={connect} onDisconnect={disconnect} liveRpm={liveRpm} />}
         {activeTab === 'lab' && <ComboLab catalog={catalog} beyblades={beyblades} onAddBeyblade={addBeyblade} onToggleFavorite={toggleFavorite} onDelete={deleteBeyblade} />}
-        {activeTab === 'operations' && <Operations data={{ ...data, logs }} onImport={(imported) => { setData(imported); log('Backup importato.'); }} />}
+        {activeTab === 'operations' && <Operations data={{ ...data, logs }} catalog={catalog} onImport={(imported) => { setData(imported); log('Backup importato.'); }} />}
       </main>
       <BottomNav activeTab={activeTab} onChange={setActiveTab} />
     </div>
