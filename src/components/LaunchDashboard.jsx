@@ -74,20 +74,19 @@ export default function LaunchDashboard({
     });
   };
 
+  // Il pulsante Pulisci apre sempre il popup.
   const handleClearHistory = () => {
-    // Se ci sono righe selezionate, elimina solo quelle.
-    if (selectedLaunchIds.size > 0) {
-      onDeleteSelectedLaunches([...selectedLaunchIds]);
-      setSelectedLaunchIds(new Set());
-      return;
-    }
-
-    // Nessuna selezione: mostra il popup di conferma.
     setShowClearConfirm(true);
   };
 
+  // Conferma la cancellazione, distinguendo tra selezionati e tutta la history.
   const handleConfirmClearHistory = () => {
-    onClearHistory();
+    if (selectedLaunchIds.size > 0) {
+      onDeleteSelectedLaunches([...selectedLaunchIds]);
+    } else {
+      onClearHistory();
+    }
+
     setSelectedLaunchIds(new Set());
     setShowClearConfirm(false);
   };
@@ -96,16 +95,20 @@ export default function LaunchDashboard({
     setShowClearConfirm(false);
   };
 
+  const isReady = isConnected && liveRpm <= 100;
+
   return (
     <div className="page-stack">
       <section className="hero-status">
         <div className="hero-copy">
           <span className="eyebrow">BATTLE PASS</span>
 
-          <h1>
-            {liveRpm
-              ? `${liveRpm.toLocaleString()} RPM`
-              : 'Pronto al lancio'}
+          <h1 className={isReady ? 'battle-ready' : ''}>
+            {isReady
+              ? 'PRONTO'
+              : liveRpm
+                ? `${liveRpm.toLocaleString()} RPM`
+                : 'Pronto al lancio'}
           </h1>
 
           <p>
@@ -231,16 +234,17 @@ export default function LaunchDashboard({
                   key={launch.id}
                 >
                   <div className="history-row-content">
-                    <div>
-                      <strong>{launch.name}</strong>
-                      <small>{launch.timestamp}</small>
-                    </div>
+                    <strong>{launch.name}</strong>
 
                     <b>
                       {launch.power.toLocaleString()}{' '}
                       <span>RPM</span>
                     </b>
                   </div>
+
+                  <small className="history-timestamp">
+                    {launch.timestamp}
+                  </small>
 
                   <label className="history-select">
                     <input
@@ -276,11 +280,25 @@ export default function LaunchDashboard({
             aria-labelledby="clear-history-title"
           >
             <h3 id="clear-history-title">
-              Cancella tutta la history?
+              {selectedLaunchIds.size > 0
+                ? 'Cancella lanci selezionati?'
+                : 'Cancella tutta la history?'}
             </h3>
 
             <p>
-              Sicuro di voler cancellare tutta la history?
+              {selectedLaunchIds.size > 0
+                ? `Sicuro di voler cancellare ${
+                    selectedLaunchIds.size
+                  } lancio${
+                    selectedLaunchIds.size === 1
+                      ? ''
+                      : 'i'
+                  } selezionato${
+                    selectedLaunchIds.size === 1
+                      ? ''
+                      : 'i'
+                  }?`
+                : 'Sicuro di voler cancellare tutta la history?'}
             </p>
 
             <div className="confirm-actions">
@@ -297,7 +315,9 @@ export default function LaunchDashboard({
                 className="confirm-delete-button"
                 onClick={handleConfirmClearHistory}
               >
-                Cancella tutto
+                {selectedLaunchIds.size > 0
+                  ? 'Cancella selezionati'
+                  : 'Cancella tutto'}
               </button>
             </div>
           </div>
