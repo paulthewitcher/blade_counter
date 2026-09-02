@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import GarageBuilder from '../garage/GarageBuilder';
 import ComboList from './ComboList';
 
-export default function ComboLab({ catalog, beyblades, onAddBeyblade, onToggleFavorite, onDelete }) {
+export default function ComboLab({
+  catalog,
+  beyblades,
+  onAddBeyblade,
+  onToggleFavorite,
+  onDeleteBeyblade,
+}) {
   const [editingBeyblade, setEditingBeyblade] = useState(null);
 
   const handleSave = (beyblade) => {
@@ -24,7 +30,7 @@ export default function ComboLab({ catalog, beyblades, onAddBeyblade, onToggleFa
           catalog={catalog}
           beyblades={beyblades}
           onToggleFavorite={onToggleFavorite}
-          onDelete={onDelete}
+          onDelete={onDeleteBeyblade}
           onEdit={setEditingBeyblade}
         />
       </section>
