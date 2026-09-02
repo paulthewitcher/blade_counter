@@ -105,26 +105,23 @@ export default function LaunchDashboard({
    *   mostra PRONTO.
    * - Se disconnesso mostra Pronto al lancio.
    */
-  const isLaunching = isConnected && liveRpm > 100;
+const isLaunching = isConnected && liveRpm > 100;
+const hasSelectedBeyblade = Boolean(selectedComboId);
 
-  let heroTitle;
+let heroTitle;
+let heroTitleClass = '';
 
-  if (isLaunching) {
-    heroTitle = `${liveRpm.toLocaleString()} RPM`;
-  } else if (isConnected && selected) {
-    heroTitle = 'LANCIA!';
-  } else if (isConnected) {
-    heroTitle = 'PRONTO';
-  } else {
-    heroTitle = 'Pronto al lancio';
-  }
-
-  const heroTitleClass =
-    !isLaunching && isConnected
-      ? selected
-        ? 'battle-launch'
-        : 'battle-ready'
-      : '';
+if (isLaunching) {
+  heroTitle = `${liveRpm.toLocaleString()} RPM`;
+} else if (isConnected && hasSelectedBeyblade) {
+  heroTitle = 'LANCIA!';
+  heroTitleClass = 'battle-launch';
+} else if (isConnected) {
+  heroTitle = 'PRONTO.';
+  heroTitleClass = 'battle-ready';
+} else {
+  heroTitle = '-';
+}
 
   return (
     <div className="page-stack">
