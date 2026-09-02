@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import catalog from './data/catalog.js';
-import BottomNav from './components/BottomNav.jsx';
+import BottomNav from './components/BottomNav.js';
 import ComboLab from './components/ComboLab.jsx';
 import LaunchDashboard from './components/LaunchDashboard.jsx';
 import Operations from './components/Operations.jsx';
