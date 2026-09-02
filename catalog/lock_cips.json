@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "parts": [
+    {
+      "id": "cip_incendio",
+      "name": "Incendio",
+      "image": "parts/lock_cip_incendio.webp",
+      "stats": {},
+      "details": {},
+      "tags": [
+        "cip"
+      ]
+    }
+  ]
+}

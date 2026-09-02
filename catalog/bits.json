@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 1,
+  "parts": [
+    {
+      "id": "b",
+      "name": "B",
+      "image": "parts/bit_b.webp",
+      "stats": {
+        "attack": 15,
+        "defence": 25,
+        "stamina": 50,
+        "dash": 10,
+        "burst": 30
+      },
+      "details": {
+        "type": "stamina"
+      },
+      "tags": [
+        "stamina"
+      ]
+    },
+    {
+      "id": "r",
+      "name": "R",
+      "image": "parts/bit_r.webp",
+      "stats": {
+        "attack": 40,
+        "defence": 10,
+        "stamina": 20,
+        "dash": 30,
+        "burst": 80
+      },
+      "details": {
+        "type": "attack"
+      },
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "gf",
+      "name": "GF",
+      "image": "parts/bit_gf.webp",
+      "stats": {
+        "attack": 50,
+        "defence": 5,
+        "stamina": 5,
+        "dash": 40,
+        "burst": 80
+      },
+      "details": {
+        "type": "attack"
+      },
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "gn",
+      "name": "GN",
+      "image": "parts/bit_gn.webp",
+      "stats": {
+        "attack": 20,
+        "defence": 40,
+        "stamina": 10,
+        "dash": 30,
+        "burst": 30
+      },
+      "details": {
+        "type": "defence"
+      },
+      "tags": [
+        "defence"
+      ]
+    },
+    {
+      "id": "n",
+      "name": "N",
+      "image": "parts/bit_n.webp",
+      "stats": {
+        "attack": 10,
+        "defence": 50,
+        "stamina": 30,
+        "dash": 10,
+        "burst": 30
+      },
+      "details": {
+        "type": "defence"
+      },
+      "tags": [
+        "defence"
+      ]
+    },
+    {
+      "id": "h",
+      "name": "H",
+      "image": "parts/bit_h.webp",
+      "stats": {
+        "attack": 30,
+        "defence": 35,
+        "stamina": 20,
+        "dash": 15,
+        "burst": 80
+      },
+      "details": {
+        "type": "balanced"
+      },
+      "tags": [
+        "balanced"
+      ]
+    },
+    {
+      "id": "hn",
+      "name": "HN",
+      "image": "parts/bit_hn.webp",
+      "stats": {
+        "attack": 15,
+        "defence": 55,
+        "stamina": 20,
+        "dash": 10,
+        "burst": 30
+      },
+      "details": {
+        "type": "defence"
+      },
+      "tags": [
+        "defence"
+      ]
+    },
+    {
+      "id": "f",
+      "name": "F",
+      "image": "parts/bit_f.webp",
+      "stats": {
+        "attack": 40,
+        "defence": 15,
+        "stamina": 10,
+        "dash": 35,
+        "burst": 80
+      },
+      "details": {
+        "type": "attack"
+      },
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "un",
+      "name": "UN",
+      "image": "parts/bit_un.webp",
+      "stats": {
+        "attack": 10,
+        "defence": 60,
+        "stamina": 20,
+        "dash": 10,
+        "burst": 30
+      },
+      "details": {
+        "type": "defence"
+      },
+      "tags": [
+        "defence"
+      ]
+    },
+    {
+      "id": "k",
+      "name": "K",
+      "image": "parts/bit_k.webp",
+      "stats": {
+        "attack": 35,
+        "defence": 25,
+        "stamina": 15,
+        "dash": 25,
+        "burst": 80
+      },
+      "details": {
+        "type": "balanced"
+      },
+      "tags": [
+        "balanced"
+      ]
+    },
+    {
+      "id": "s",
+      "name": "S",
+      "image": "parts/bit_s.webp",
+      "stats": {
+        "attack": 10,
+        "defence": 45,
+        "stamina": 35,
+        "dash": 10,
+        "burst": 30
+      },
+      "details": {
+        "type": "defence"
+      },
+      "tags": [
+        "defence"
+      ]
+    },
+    {
+      "id": "p",
+      "name": "P",
+      "image": "parts/bit_p.webp",
+      "stats": {
+        "attack": 25,
+        "defence": 25,
+        "stamina": 25,
+        "dash": 25,
+        "burst": 80
+      },
+      "details": {
+        "type": "balanced"
+      },
+      "tags": [
+        "balanced"
+      ]
+    },
+    {
+      "id": "l",
+      "name": "L",
+      "image": "parts/bit_l.webp",
+      "stats": {
+        "attack": 40,
+        "defence": 5,
+        "stamina": 15,
+        "dash": 40,
+        "burst": 80
+      },
+      "details": {
+        "type": "attack"
+      },
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "lf",
+      "name": "LF",
+      "image": "parts/bit_lf.webp",
+      "stats": {
+        "attack": 45,
+        "defence": 5,
+        "stamina": 10,
+        "dash": 40,
+        "burst": 80
+      },
+      "details": {
+        "type": "attack"
+      },
+      "tags": [
+        "attack"
+      ]
+    },
+    {
+      "id": "uf",
+      "name": "UF",
+      "image": "parts/bit_uf.webp",
+      "stats": {
+        "attack": 55,
+        "defence": 5,
+        "stamina": 5,
+        "dash": 35,
+        "burst": 80
+      },
+      "details": {
+        "type": "attack"
+      },
+      "tags": [
+        "attack"
+      ]
+    }
+  ]
+}

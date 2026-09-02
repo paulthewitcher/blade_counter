@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "parts": [
+    {
+      "id": "reaper_incendio",
+      "name": "Reaper Incendio",
+      "image": "parts/blade_reaper_incendio.webp",
+      "stats": {
+        "attack": 40,
+        "defence": 20,
+        "stamina": 40
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "balance"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
+      ]
+    },
+    {
+      "id": "roar_tyranno",
+      "name": "Roar Tyranno",
+      "image": "parts/blade_roar_tyranno.webp",
+      "stats": {
+        "attack": 60,
+        "defence": 10,
+        "stamina": 12
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "attack"
+      },
+      "tags": [
+        "right-spin",
+        "attack"
+      ]
+    },
+    {
+      "id": "sword_dran_red",
+      "name": "Sword Dran Red",
+      "image": "parts/blade_sword_dran_red.webp",
+      "stats": {
+        "attack": 55,
+        "defence": 25,
+        "stamina": 20
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "attack"
+      },
+      "tags": [
+        "right-spin",
+        "attack"
+      ]
+    },
+    {
+      "id": "arrow_wizard",
+      "name": "Arrow Wizard",
+      "image": "parts/blade_arrow_wizard.webp",
+      "stats": {
+        "attack": 15,
+        "defence": 30,
+        "stamina": 55
+      },
+      "details": {
+        "type": "stamina",
+        "spin direction": "right"
+      },
+      "tags": [
+        "stamina"
+      ]
+    },
+    {
+      "id": "knife_shinobi",
+      "name": "Knife Shinobi",
+      "image": "parts/blade_knife_shinobi.webp",
+      "stats": {
+        "attack": 23,
+        "defence": 50,
+        "stamina": 27
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "defence"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
+      ]
+    },
+    {
+      "id": "keel_shark_green",
+      "name": "Keel Shark",
+      "image": "parts/blade_kill_shark_green.webp",
+      "stats": {
+        "attack": 60,
+        "defence": 25,
+        "stamina": 15
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "attack"
+      },
+      "tags": [
+        "right-spin",
+        "attack"
+      ]
+    },
+    {
+      "id": "rock_golem",
+      "name": "Rock Golem",
+      "image": "parts/blade_rock_golem.webp",
+      "stats": {
+        "attack": 30,
+        "defence": 60,
+        "stamina": 10
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "defence"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
+      ]
+    },
+    {
+      "id": "talon_ptera",
+      "name": "Talon Ptera",
+      "image": "parts/blade_talon_ptera.webp",
+      "stats": {
+        "attack": 27,
+        "defence": 23,
+        "stamina": 50
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "stamina"
+      },
+      "tags": [
+        "right-spin",
+        "stamina"
+      ]
+    },
+    {
+      "id": "wand_wizard",
+      "name": "Wand Wizard",
+      "image": "parts/blade_wand_wizard.webp",
+      "stats": {
+        "attack": 15,
+        "defence": 25,
+        "stamina": 60
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "stamina"
+      },
+      "tags": [
+        "right-spin",
+        "stamina"
+      ]
+    },
+    {
+      "id": "soar_phoenix_red",
+      "name": "Soar Phoenix Red",
+      "image": "parts/blade_soar_phoenix_red.webp",
+      "stats": {
+        "attack": 65,
+        "defence": 30,
+        "stamina": 20
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "attack"
+      },
+      "tags": [
+        "right-spin",
+        "attack"
+      ]
+    },
+    {
+      "id": "soar_phoenix",
+      "name": "Soar Phoenix",
+      "image": "parts/blade_soar_phoenix.webp",
+      "stats": {
+        "attack": 60,
+        "defence": 25,
+        "stamina": 15
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "attack"
+      },
+      "tags": [
+        "right-spin",
+        "attack"
+      ]
+    },
+    {
+      "id": "cowl_sphinx",
+      "name": "Cowl Sphinx",
+      "image": "parts/blade_cowl_sphinx.webp",
+      "stats": {
+        "attack": 35,
+        "defence": 55,
+        "stamina": 10
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "defence"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
+      ]
+    },
+    {
+      "id": "tackle_goat",
+      "name": "Tackle Goat",
+      "image": "parts/blade_tackle_goat.webp",
+      "stats": {
+        "attack": 13,
+        "defence": 65,
+        "stamina": 22
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "defence"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
+      ]
+    },
+    {
+      "id": "savage_bear",
+      "name": "Savage Bear",
+      "image": "parts/blade_savage_bear.webp",
+      "stats": {
+        "attack": 17,
+        "defence": 50,
+        "stamina": 33
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "defence"
+      },
+      "tags": [
+        "right-spin",
+        "defence"
+      ]
+    },
+    {
+      "id": "claw_leon",
+      "name": "Claw Leon",
+      "image": "parts/blade_claw_leon.webp",
+      "stats": {
+        "attack": 40,
+        "defence": 40,
+        "stamina": 20
+      },
+      "details": {
+        "spin direction": "right",
+        "type": "balance"
+      },
+      "tags": [
+        "right-spin",
+        "balance"
+      ]
+    }
+  ]
+}

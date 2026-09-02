@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "parts": [
+    {
+      "id": "sub_t",
+      "name": "T",
+      "image": "parts/sub_t.webp",
+      "stats": {},
+      "details": {},
+      "tags": [
+        "sub"
+      ]
+    }
+  ]
+}
