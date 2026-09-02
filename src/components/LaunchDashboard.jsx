@@ -121,7 +121,9 @@ export default function LaunchDashboard({
 
   const heroTitleClass =
     !isLaunching && isConnected
-      ? 'battle-ready'
+      ? selected
+        ? 'battle-launch'
+        : 'battle-ready'
       : '';
 
   return (
