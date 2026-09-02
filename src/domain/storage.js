@@ -1,3 +1,4 @@
+```js
 const STORAGE_KEY = 'blade-counter-data';
 
 const isObject = (value) =>
@@ -30,10 +31,21 @@ const normalizePartRef = (value) => {
 export const normalizeBeyblade = (beyblade = {}) => ({
   id: String(beyblade?.id || ''),
   name: String(beyblade?.name || 'Senza nome'),
-  system: String(beyblade?.system || beyblade?.systemId || ''),
+
+  // Mantiene sia il nuovo campo `system`
+  // sia il vecchio eventuale `systemId`.
+  system: String(
+    beyblade?.system ||
+    beyblade?.systemId ||
+    ''
+  ),
+
+  // Nuovo formato: isFavorite
+  // Vecchio formato: favorite
   isFavorite: Boolean(
     beyblade?.isFavorite ?? beyblade?.favorite
   ),
+
   parts: {
     blade: normalizePartRef(beyblade?.parts?.blade),
     ratchet: normalizePartRef(beyblade?.parts?.ratchet),
@@ -41,7 +53,9 @@ export const normalizeBeyblade = (beyblade = {}) => ({
     lock_cip: normalizePartRef(beyblade?.parts?.lock_cip),
     subBlade: normalizePartRef(beyblade?.parts?.subBlade),
   },
+
   stats: normalizeStats(beyblade?.stats),
+
   details: isObject(beyblade?.details)
     ? { ...beyblade.details }
     : {},
@@ -77,6 +91,17 @@ export const normalizeAppData = (data = {}) => {
   };
 };
 
+/**
+ * Migra i dati salvati dalle versioni precedenti
+ * al formato attuale dell'applicazione.
+ *
+ * La funzione è volutamente pura:
+ * non legge né scrive localStorage.
+ */
+export const migrateAppData = (data = {}) => {
+  return normalizeAppData(data);
+};
+
 export const loadAppData = () => {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -88,7 +113,7 @@ export const loadAppData = () => {
       };
     }
 
-    return normalizeAppData(JSON.parse(raw));
+    return migrateAppData(JSON.parse(raw));
   } catch (error) {
     console.error('Unable to load app data:', error);
 
@@ -100,7 +125,7 @@ export const loadAppData = () => {
 };
 
 export const saveAppData = (data) => {
-  const normalized = normalizeAppData(data);
+  const normalized = migrateAppData(data);
 
   localStorage.setItem(
     STORAGE_KEY,
@@ -142,7 +167,8 @@ export const deleteLaunch = (launchId) => {
   const nextData = {
     ...data,
     launchHistory: data.launchHistory.filter(
-      (launch) => String(launch?.id) !== String(launchId)
+      (launch) =>
+        String(launch?.id) !== String(launchId)
     ),
   };
 
@@ -150,3 +176,4 @@ export const deleteLaunch = (launchId) => {
 
   return nextData;
 };
+```
