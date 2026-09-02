@@ -212,36 +212,35 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <img
+        <div
           className="header-art"
-          src="/images/battlepass_header.webp"
-          alt=""
-          aria-hidden="true"
+          style={{
+            backgroundImage: `linear-gradient(to bottom, rgba(244,246,249,0.02) 40%, #f4f6f9 100%), url(${import.meta.env.BASE_URL}images/battlepass_header.webp)`,
+          }}
         />
 
         <div className="header-overlay">
           <span>Blade Counter</span>
-          <small>v{APP_VERSION}</small>
+          <small>
+            data-first rebuild • v{APP_VERSION}
+          </small>
         </div>
 
-        <div className="connection-status">
-          <span
-            className={
-              isConnected
-                ? 'status-dot connected'
-                : 'status-dot'
-            }
-          />
-
-          <span>
-            {isConnected
-              ? 'Connesso'
-              : 'Disconnesso'}
-          </span>
-        </div>
+        <div
+          className={
+            isConnected
+              ? 'status-dot connected'
+              : 'status-dot'
+          }
+          title={
+            isConnected
+              ? 'Battle Pass connesso'
+              : 'Battle Pass disconnesso'
+          }
+        />
       </header>
 
-      <main className="app-main">
+      <main className="app-content">
         {activeTab === 'home' && (
           <LaunchDashboard
             catalog={catalog}
