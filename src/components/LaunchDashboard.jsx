@@ -41,6 +41,7 @@ export default function LaunchDashboard({
 
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
+  // Rimuove dalle selezioni eventuali lanci che non esistono più.
   useEffect(() => {
     setSelectedLaunchIds((current) => {
       const existingIds = new Set(
@@ -73,10 +74,12 @@ export default function LaunchDashboard({
     });
   };
 
+  // Il pulsante Pulisci apre sempre il popup.
   const handleClearHistory = () => {
     setShowClearConfirm(true);
   };
 
+  // Conferma la cancellazione, distinguendo tra selezionati e tutta la history.
   const handleConfirmClearHistory = () => {
     if (selectedLaunchIds.size > 0) {
       onDeleteSelectedLaunches([...selectedLaunchIds]);
@@ -92,8 +95,34 @@ export default function LaunchDashboard({
     setShowClearConfirm(false);
   };
 
-  const isReady =
-    isConnected && (liveRpm <= 100 || liveRpm >= 99999);
+  /*
+   * Stato del display principale:
+   *
+   * - Durante un lancio reale mostra gli RPM.
+   * - A riposo, se connesso e c'è un Beyblade selezionato,
+   *   mostra LANCIA!.
+   * - A riposo, se connesso ma non c'è un Beyblade selezionato,
+   *   mostra PRONTO.
+   * - Se disconnesso mostra Pronto al lancio.
+   */
+  const isLaunching = isConnected && liveRpm > 100;
+
+  let heroTitle;
+
+  if (isLaunching) {
+    heroTitle = `${liveRpm.toLocaleString()} RPM`;
+  } else if (isConnected && selected) {
+    heroTitle = 'LANCIA!';
+  } else if (isConnected) {
+    heroTitle = 'PRONTO';
+  } else {
+    heroTitle = 'Pronto al lancio';
+  }
+
+  const heroTitleClass =
+    !isLaunching && isConnected
+      ? 'battle-ready'
+      : '';
 
   return (
     <div className="page-stack">
@@ -101,12 +130,8 @@ export default function LaunchDashboard({
         <div className="hero-copy">
           <span className="eyebrow">BATTLE PASS</span>
 
-          <h1 className={isReady ? 'battle-ready' : ''}>
-            {isReady
-              ? 'PRONTO'
-              : liveRpm
-                ? `${liveRpm.toLocaleString()} RPM`
-                : 'Pronto al lancio'}
+          <h1 className={heroTitleClass}>
+            {heroTitle}
           </h1>
 
           <p>
@@ -234,6 +259,7 @@ export default function LaunchDashboard({
                   <div className="history-row-content">
                     <div className="history-row-info">
                       <strong>{launch.name}</strong>
+
                       <small>{launch.timestamp}</small>
                     </div>
 
