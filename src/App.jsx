@@ -107,6 +107,7 @@ export default function App() {
          * Dopo la registrazione il display torna a PRONTO.
          */
         setLiveRpm(0);
+        setSelectedComboId('');
       }, 800);
     },
     [
