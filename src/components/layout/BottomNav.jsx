@@ -2,7 +2,7 @@
 export default function BottomNav({ activeTab, onChange }) {
   const tabs = [
     ['home', 'Home', '⌂'],
-    ['lab', 'Garage', '◈'],
+    ['combo', 'Garage', '◈'],
     ['operations', 'Ops', '⚙'],
   ];
   return <nav className="bottom-nav">{tabs.map(([id, label, icon]) => (
