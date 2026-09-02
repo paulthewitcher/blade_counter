@@ -36,10 +36,10 @@ export default function App() {
     (speed) => {
       /*
        * 99999 è il valore inviato dal Battle Pass
-       * quando è in standby/pronto.
+       * quando il dispositivo è in standby/pronto.
        *
-       * Non deve essere considerato un lancio reale,
-       * né influenzare il valore massimo della sessione.
+       * Non deve essere visualizzato come RPM reale
+       * e non deve influenzare il massimo del lancio.
        */
       if (speed >= 99999) {
         setLiveRpm(0);
@@ -63,7 +63,7 @@ export default function App() {
         maxPowerRef.current = 0;
 
         /*
-         * Ignora valori troppo bassi e valori non validi.
+         * Ignora valori troppo bassi o non validi.
          */
         if (finalPower <= 100 || finalPower > 90000) {
           setLiveRpm(0);
@@ -104,8 +104,7 @@ export default function App() {
         );
 
         /*
-         * Dopo aver registrato il lancio torniamo
-         * allo stato PRONTO.
+         * Dopo la registrazione il display torna a PRONTO.
          */
         setLiveRpm(0);
       }, 800);
@@ -213,12 +212,11 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <div
+        <img
           className="header-art"
-          style={{
-            backgroundImage:
-              "url('/images/battlepass_header.webp')",
-          }}
+          src="/images/battlepass_header.webp"
+          alt=""
+          aria-hidden="true"
         />
 
         <div className="header-overlay">
