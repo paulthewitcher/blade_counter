@@ -1,4 +1,5 @@
 const STORAGE_KEY = 'blade-counter-data';
+export const DATA_SCHEMA_VERSION = 2;
 
 const isObject = (value) =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
