@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import catalog from './data/catalog.js';
-import BottomNav from './components/BottomNav.js';
-import ComboLab from './components/ComboLab.jsx';
+import BottomNav from './components/layout/BottomNav.jsx';
+import ComboLab from './components/combo/ComboLab.jsx';
 import LaunchDashboard from './components/LaunchDashboard.jsx';
-import Operations from './components/Operations.jsx';
+import Operations from './components/operations/Operations.jsx';
 import { useAppData } from './hooks/useAppData';
 import { useBattlePass } from './hooks/useBattlePass';
 import { APP_VERSION } from './config/app.js';
