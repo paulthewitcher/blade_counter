@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import catalog from './data/catalog.js';
-import BottomNav from './components/layout/BottomNav';
-import ComboLab from './components/combo/ComboLab';
-import LaunchDashboard from './components/LaunchDashboard';
-import Operations from './components/operations/Operations';
+import BottomNav from './components/BottomNav.jsx';
+import ComboLab from './components/ComboLab.jsx';
+import LaunchDashboard from './components/LaunchDashboard.jsx';
+import Operations from './components/Operations.jsx';
 import { useAppData } from './hooks/useAppData';
 import { useBattlePass } from './hooks/useBattlePass';
 import { APP_VERSION } from './config/app.js';
@@ -12,71 +12,259 @@ import './app/app.css';
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [data, setData] = useAppData(catalog);
+
   const [selectedComboId, setSelectedComboId] = useState('');
   const [liveRpm, setLiveRpm] = useState(0);
   const [logs, setLogs] = useState([]);
+
   const maxPowerRef = useRef(0);
   const launchTimerRef = useRef(null);
 
-  const log = useCallback((message) => setLogs((current) => [...current.slice(-49), `[${new Date().toLocaleTimeString()}] ${message}`]), []);
-  const beyblades = useMemo(() => data.beyblades, [data.beyblades]);
+  const log = useCallback((message) => {
+    setLogs((current) => [
+      ...current.slice(-49),
+      `[${new Date().toLocaleTimeString()}] ${message}`,
+    ]);
+  }, []);
 
-  const onSpeed = useCallback((speed) => {
-    setLiveRpm(speed);
-    maxPowerRef.current = Math.max(maxPowerRef.current, speed);
-    clearTimeout(launchTimerRef.current);
-    launchTimerRef.current = setTimeout(() => {
-      const finalPower = maxPowerRef.current;
-      maxPowerRef.current = 0;
-      // Ignore Battle Pass attach/detach spikes and other invalid readings.
-      if (finalPower <= 100 || finalPower > 90000) return;
-      const selected = beyblades.find((beyblade) => beyblade.id === selectedComboId);
-      const newLaunch = {
-        id: `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
-        name: selected?.name || 'Unknown Beyblade',
-        power: finalPower,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      };
-      setData((current) => ({ ...current, launchHistory: [newLaunch, ...current.launchHistory] }));
-      log(`Lancio registrato: ${newLaunch.name} a ${finalPower} RPM.`);
-    }, 800);
-  }, [beyblades, log, selectedComboId, setData]);
+  const beyblades = useMemo(
+    () => data.beyblades,
+    [data.beyblades]
+  );
 
-  const { isConnected, connect, disconnect } = useBattlePass({ onSpeed, onLog: log });
+  const onSpeed = useCallback(
+    (speed) => {
+      setLiveRpm(speed);
 
-  const addBeyblade = (beyblade) => {
-    setData((current) => ({ ...current, beyblades: [beyblade, ...current.beyblades] }));
-    setSelectedComboId(beyblade.id);
-    log(`Beyblade salvato: ${beyblade.name}`);
-  };
+      maxPowerRef.current = Math.max(
+        maxPowerRef.current,
+        speed
+      );
 
-  const toggleFavorite = (id) => {
-    setData((current) => {
-      const updated = current.beyblades.map((beyblade) => beyblade.id === id ? { ...beyblade, isFavorite: !beyblade.isFavorite } : beyblade);
-      const toggled = updated.find((beyblade) => beyblade.id === id);
-      if (toggled && !toggled.isFavorite && toggled.id === selectedComboId) setSelectedComboId('');
-      return { ...current, beyblades: updated };
-    });
-  };
+      clearTimeout(launchTimerRef.current);
 
-  const deleteBeyblade = (id) => {
-    if (id === selectedComboId) setSelectedComboId('');
-    setData((current) => ({ ...current, beyblades: current.beyblades.filter((beyblade) => beyblade.id !== id) }));
-  };
+      launchTimerRef.current = setTimeout(() => {
+        const finalPower = maxPowerRef.current;
+
+        maxPowerRef.current = 0;
+
+        if (finalPower <= 100 || finalPower > 90000) {
+          return;
+        }
+
+        const selected = beyblades.find(
+          (beyblade) => beyblade.id === selectedComboId
+        );
+
+        const newLaunch = {
+          id: `${Date.now()}-${Math.random()
+            .toString(36)
+            .slice(2, 10)}`,
+          name: selected?.name || 'Unknown Beyblade',
+          power: finalPower,
+          timestamp: new Date().toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          }),
+        };
+
+        setData((current) => ({
+          ...current,
+          launchHistory: [
+            newLaunch,
+            ...current.launchHistory,
+          ],
+        }));
+
+        log(
+          `Lancio registrato: ${newLaunch.name} a ${finalPower} RPM.`
+        );
+      }, 800);
+    },
+    [
+      beyblades,
+      log,
+      selectedComboId,
+      setData,
+    ]
+  );
+
+  const {
+    isConnected,
+    connect,
+    disconnect,
+  } = useBattlePass({
+    onSpeed,
+    onLog: log,
+  });
+
+  const addBeyblade = useCallback(
+    (beyblade) => {
+      setData((current) => ({
+        ...current,
+        beyblades: [
+          ...current.beyblades,
+          beyblade,
+        ],
+      }));
+
+      log(`Beyblade aggiunto: ${beyblade.name}.`);
+    },
+    [log, setData]
+  );
+
+  const toggleFavorite = useCallback(
+    (id) => {
+      setData((current) => ({
+        ...current,
+        beyblades: current.beyblades.map((beyblade) =>
+          beyblade.id === id
+            ? {
+                ...beyblade,
+                isFavorite: !beyblade.isFavorite,
+              }
+            : beyblade
+        ),
+      }));
+    },
+    [setData]
+  );
+
+  const deleteBeyblade = useCallback(
+    (id) => {
+      setData((current) => ({
+        ...current,
+        beyblades: current.beyblades.filter(
+          (beyblade) => beyblade.id !== id
+        ),
+      }));
+
+      if (selectedComboId === id) {
+        setSelectedComboId('');
+      }
+    },
+    [selectedComboId, setData]
+  );
+
+  const deleteLaunch = useCallback(
+    (id) => {
+      setData((current) => ({
+        ...current,
+        launchHistory: current.launchHistory.filter(
+          (launch) => launch.id !== id
+        ),
+      }));
+    },
+    [setData]
+  );
+
+  const deleteSelectedLaunches = useCallback(
+    (ids) => {
+      if (!ids || ids.length === 0) {
+        return;
+      }
+
+      const selectedIds = new Set(ids);
+
+      setData((current) => ({
+        ...current,
+        launchHistory: current.launchHistory.filter(
+          (launch) => !selectedIds.has(launch.id)
+        ),
+      }));
+
+      log(
+        `${ids.length} lancio${
+          ids.length === 1 ? '' : 'i'
+        } eliminato${
+          ids.length === 1 ? '' : 'i'
+        } dalla history.`
+      );
+    },
+    [log, setData]
+  );
+
+  const clearHistory = useCallback(() => {
+    setData((current) => ({
+      ...current,
+      launchHistory: [],
+    }));
+
+    log('History completamente cancellata.');
+  }, [log, setData]);
 
   return (
     <div className="app-shell">
       <header className="app-header">
-        <div className="header-art" style={{ backgroundImage: `linear-gradient(to bottom, rgba(244,246,249,0.02) 40%, #f4f6f9 100%), url(${import.meta.env.BASE_URL}images/battlepass_header.webp)` }} />
-        <div className="header-overlay"><span>Blade Counter</span><small>data-first rebuild • v{APP_VERSION}</small></div>
-        <div className={isConnected ? 'status-dot connected' : 'status-dot'} title={isConnected ? 'Battle Pass connesso' : 'Battle Pass disconnesso'} />
+        <div>
+          <h1>Blade Counter</h1>
+          <small>v{APP_VERSION}</small>
+        </div>
+
+        <div className="connection-status">
+          <span
+            className={
+              isConnected
+                ? 'status-dot connected'
+                : 'status-dot'
+            }
+          />
+
+          <span>
+            {isConnected
+              ? 'Connesso'
+              : 'Disconnesso'}
+          </span>
+        </div>
       </header>
-      <main className="app-content">
-        {activeTab === 'home' && <LaunchDashboard catalog={catalog} data={data} beyblades={beyblades} selectedComboId={selectedComboId} onSelectCombo={setSelectedComboId} onClearHistory={() => setData((current) => ({ ...current, launchHistory: [] }))} onDeleteLaunch={(id) => setData((current) => ({ ...current, launchHistory: current.launchHistory.filter((launch) => launch.id !== id) }))} isConnected={isConnected} onConnect={connect} onDisconnect={disconnect} liveRpm={liveRpm} />}
-        {activeTab === 'lab' && <ComboLab catalog={catalog} beyblades={beyblades} onAddBeyblade={addBeyblade} onToggleFavorite={toggleFavorite} onDelete={deleteBeyblade} />}
-        {activeTab === 'operations' && <Operations data={{ ...data, logs }} catalog={catalog} onImport={(imported) => { setData(imported); log('Backup importato.'); }} />}
+
+      <main className="app-main">
+        {activeTab === 'home' && (
+          <LaunchDashboard
+            catalog={catalog}
+            data={data}
+            beyblades={beyblades}
+            selectedComboId={selectedComboId}
+            onSelectCombo={setSelectedComboId}
+            onClearHistory={clearHistory}
+            onDeleteLaunch={deleteLaunch}
+            onDeleteSelectedLaunches={
+              deleteSelectedLaunches
+            }
+            isConnected={isConnected}
+            onConnect={connect}
+            onDisconnect={disconnect}
+            liveRpm={liveRpm}
+          />
+        )}
+
+        {activeTab === 'combo' && (
+          <ComboLab
+            catalog={catalog}
+            data={data}
+            beyblades={beyblades}
+            selectedComboId={selectedComboId}
+            onSelectCombo={setSelectedComboId}
+            onAddBeyblade={addBeyblade}
+            onToggleFavorite={toggleFavorite}
+            onDeleteBeyblade={deleteBeyblade}
+          />
+        )}
+
+        {activeTab === 'operations' && (
+          <Operations
+            data={data}
+            setData={setData}
+            logs={logs}
+            onLog={log}
+          />
+        )}
       </main>
-      <BottomNav activeTab={activeTab} onChange={setActiveTab} />
+
+      <BottomNav
+        activeTab={activeTab}
+        onChange={setActiveTab}
+      />
     </div>
   );
 }
