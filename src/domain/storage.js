@@ -1,4 +1,3 @@
-```js
 const STORAGE_KEY = 'blade-counter-data';
 
 const isObject = (value) =>
@@ -34,11 +33,7 @@ export const normalizeBeyblade = (beyblade = {}) => ({
 
   // Mantiene sia il nuovo campo `system`
   // sia il vecchio eventuale `systemId`.
-  system: String(
-    beyblade?.system ||
-    beyblade?.systemId ||
-    ''
-  ),
+  system: String(beyblade.system || beyblade.systemId || ''),
 
   // Nuovo formato: isFavorite
   // Vecchio formato: favorite
@@ -176,4 +171,3 @@ export const deleteLaunch = (launchId) => {
 
   return nextData;
 };
-```
