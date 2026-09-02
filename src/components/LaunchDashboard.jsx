@@ -14,7 +14,7 @@ export default function LaunchDashboard({
   selectedComboId,
   onSelectCombo,
   onClearHistory,
-  onDeleteLaunch,
+  onDeleteSelectedLaunches,
   isConnected,
   onConnect,
   onDisconnect,
@@ -35,7 +35,11 @@ export default function LaunchDashboard({
       )
     : {};
 
-  const [selectedLaunchIds, setSelectedLaunchIds] = useState(new Set());
+  const [selectedLaunchIds, setSelectedLaunchIds] = useState(
+    new Set()
+  );
+
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   // Rimuove dalle selezioni eventuali lanci che non esistono più.
   useEffect(() => {
@@ -48,7 +52,9 @@ export default function LaunchDashboard({
         [...current].filter((id) => existingIds.has(id))
       );
 
-      if (next.size === current.size) return current;
+      if (next.size === current.size) {
+        return current;
+      }
 
       return next;
     });
@@ -71,23 +77,23 @@ export default function LaunchDashboard({
   const handleClearHistory = () => {
     // Se ci sono righe selezionate, elimina solo quelle.
     if (selectedLaunchIds.size > 0) {
-      [...selectedLaunchIds].forEach((id) => {
-        onDeleteLaunch(id);
-      });
-
+      onDeleteSelectedLaunches([...selectedLaunchIds]);
       setSelectedLaunchIds(new Set());
       return;
     }
 
-    // Nessuna selezione: chiedi conferma per cancellare tutto.
-    const confirmed = window.confirm(
-      'Sicuro di voler cancellare tutta la history?'
-    );
+    // Nessuna selezione: mostra il popup di conferma.
+    setShowClearConfirm(true);
+  };
 
-    if (!confirmed) return;
-
+  const handleConfirmClearHistory = () => {
     onClearHistory();
     setSelectedLaunchIds(new Set());
+    setShowClearConfirm(false);
+  };
+
+  const handleCancelClearHistory = () => {
+    setShowClearConfirm(false);
   };
 
   return (
@@ -95,11 +101,13 @@ export default function LaunchDashboard({
       <section className="hero-status">
         <div className="hero-copy">
           <span className="eyebrow">BATTLE PASS</span>
+
           <h1>
             {liveRpm
               ? `${liveRpm.toLocaleString()} RPM`
               : 'Pronto al lancio'}
           </h1>
+
           <p>
             {selected
               ? `Selezionato: ${selected.name}`
@@ -188,6 +196,7 @@ export default function LaunchDashboard({
         <div className="panel-title-row">
           <div>
             <h2>Launch history</h2>
+
             <p>
               {data.launchHistory.length} lanci memorizzati.
             </p>
@@ -221,17 +230,6 @@ export default function LaunchDashboard({
                   }
                   key={launch.id}
                 >
-                  <label className="history-select">
-                    <input
-                      type="checkbox"
-                      checked={isSelected}
-                      onChange={() =>
-                        toggleLaunchSelection(launch.id)
-                      }
-                      aria-label={`Seleziona lancio di ${launch.name}`}
-                    />
-                  </label>
-
                   <div className="history-row-content">
                     <div>
                       <strong>{launch.name}</strong>
@@ -243,12 +241,68 @@ export default function LaunchDashboard({
                       <span>RPM</span>
                     </b>
                   </div>
+
+                  <label className="history-select">
+                    <input
+                      type="checkbox"
+                      checked={isSelected}
+                      onChange={() =>
+                        toggleLaunchSelection(launch.id)
+                      }
+                      aria-label={`Seleziona lancio di ${launch.name}`}
+                    />
+                  </label>
                 </div>
               );
             })
           )}
         </div>
       </section>
+
+      {showClearConfirm && (
+        <div
+          className="modal-backdrop"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              handleCancelClearHistory();
+            }
+          }}
+        >
+          <div
+            className="confirm-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="clear-history-title"
+          >
+            <h3 id="clear-history-title">
+              Cancella tutta la history?
+            </h3>
+
+            <p>
+              Sicuro di voler cancellare tutta la history?
+            </p>
+
+            <div className="confirm-actions">
+              <button
+                type="button"
+                className="cancel-button"
+                onClick={handleCancelClearHistory}
+              >
+                Annulla
+              </button>
+
+              <button
+                type="button"
+                className="confirm-delete-button"
+                onClick={handleConfirmClearHistory}
+              >
+                Cancella tutto
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
