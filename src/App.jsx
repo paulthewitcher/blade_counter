@@ -34,6 +34,20 @@ export default function App() {
 
   const onSpeed = useCallback(
     (speed) => {
+      /*
+       * 99999 è il valore inviato dal Battle Pass
+       * quando è in standby/pronto.
+       *
+       * Non deve essere considerato un lancio reale,
+       * né influenzare il valore massimo della sessione.
+       */
+      if (speed >= 99999) {
+        setLiveRpm(0);
+        maxPowerRef.current = 0;
+        clearTimeout(launchTimerRef.current);
+        return;
+      }
+
       setLiveRpm(speed);
 
       maxPowerRef.current = Math.max(
@@ -48,7 +62,11 @@ export default function App() {
 
         maxPowerRef.current = 0;
 
+        /*
+         * Ignora valori troppo bassi e valori non validi.
+         */
         if (finalPower <= 100 || finalPower > 90000) {
+          setLiveRpm(0);
           return;
         }
 
@@ -56,13 +74,18 @@ export default function App() {
           (beyblade) => beyblade.id === selectedComboId
         );
 
+        const now = new Date();
+
         const newLaunch = {
           id: `${Date.now()}-${Math.random()
             .toString(36)
             .slice(2, 10)}`,
           name: selected?.name || 'Unknown Beyblade',
           power: finalPower,
-          timestamp: new Date().toLocaleTimeString([], {
+          timestamp: now.toLocaleString('it-IT', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
             hour: '2-digit',
             minute: '2-digit',
           }),
@@ -79,6 +102,12 @@ export default function App() {
         log(
           `Lancio registrato: ${newLaunch.name} a ${finalPower} RPM.`
         );
+
+        /*
+         * Dopo aver registrato il lancio torniamo
+         * allo stato PRONTO.
+         */
+        setLiveRpm(0);
       }, 800);
     },
     [
@@ -146,18 +175,6 @@ export default function App() {
     [selectedComboId, setData]
   );
 
-  const deleteLaunch = useCallback(
-    (id) => {
-      setData((current) => ({
-        ...current,
-        launchHistory: current.launchHistory.filter(
-          (launch) => launch.id !== id
-        ),
-      }));
-    },
-    [setData]
-  );
-
   const deleteSelectedLaunches = useCallback(
     (ids) => {
       if (!ids || ids.length === 0) {
@@ -196,8 +213,16 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <div>
-          <h1>Blade Counter</h1>
+        <div
+          className="header-art"
+          style={{
+            backgroundImage:
+              "url('/images/battlepass_header.webp')",
+          }}
+        />
+
+        <div className="header-overlay">
+          <span>Blade Counter</span>
           <small>v{APP_VERSION}</small>
         </div>
 
@@ -227,7 +252,6 @@ export default function App() {
             selectedComboId={selectedComboId}
             onSelectCombo={setSelectedComboId}
             onClearHistory={clearHistory}
-            onDeleteLaunch={deleteLaunch}
             onDeleteSelectedLaunches={
               deleteSelectedLaunches
             }

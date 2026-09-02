@@ -41,7 +41,6 @@ export default function LaunchDashboard({
 
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
-  // Rimuove dalle selezioni eventuali lanci che non esistono più.
   useEffect(() => {
     setSelectedLaunchIds((current) => {
       const existingIds = new Set(
@@ -74,12 +73,10 @@ export default function LaunchDashboard({
     });
   };
 
-  // Il pulsante Pulisci apre sempre il popup.
   const handleClearHistory = () => {
     setShowClearConfirm(true);
   };
 
-  // Conferma la cancellazione, distinguendo tra selezionati e tutta la history.
   const handleConfirmClearHistory = () => {
     if (selectedLaunchIds.size > 0) {
       onDeleteSelectedLaunches([...selectedLaunchIds]);
@@ -95,7 +92,8 @@ export default function LaunchDashboard({
     setShowClearConfirm(false);
   };
 
-  const isReady = isConnected && liveRpm <= 100;
+  const isReady =
+    isConnected && (liveRpm <= 100 || liveRpm >= 99999);
 
   return (
     <div className="page-stack">
@@ -234,28 +232,29 @@ export default function LaunchDashboard({
                   key={launch.id}
                 >
                   <div className="history-row-content">
-                    <strong>{launch.name}</strong>
+                    <div className="history-row-info">
+                      <strong>{launch.name}</strong>
+                      <small>{launch.timestamp}</small>
+                    </div>
 
-                    <b>
-                      {launch.power.toLocaleString()}{' '}
-                      <span>RPM</span>
-                    </b>
+                    <div className="history-row-actions">
+                      <b>
+                        {launch.power.toLocaleString()}{' '}
+                        <span>RPM</span>
+                      </b>
+
+                      <label className="history-select">
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={() =>
+                            toggleLaunchSelection(launch.id)
+                          }
+                          aria-label={`Seleziona lancio di ${launch.name}`}
+                        />
+                      </label>
+                    </div>
                   </div>
-
-                  <small className="history-timestamp">
-                    {launch.timestamp}
-                  </small>
-
-                  <label className="history-select">
-                    <input
-                      type="checkbox"
-                      checked={isSelected}
-                      onChange={() =>
-                        toggleLaunchSelection(launch.id)
-                      }
-                      aria-label={`Seleziona lancio di ${launch.name}`}
-                    />
-                  </label>
                 </div>
               );
             })
