@@ -1,115 +1,152 @@
-import { getSystem, getEnabledPartTypes } from './systems.js';
+const STORAGE_KEY = 'blade-counter-data';
 
-export const DATA_SCHEMA_VERSION = 3;
-export const STORAGE_KEY = 'blade_counter_data_v3';
+const isObject = (value) =>
+  value !== null && typeof value === 'object' && !Array.isArray(value);
 
-const PART_TYPES = ['blade', 'ratchet', 'bit', 'lock_cip', 'subBlade'];
+const normalizeStats = (stats) => {
+  if (!isObject(stats)) return {};
 
-const emptyPartReferences = () => Object.fromEntries(PART_TYPES.map((type) => [type, '']));
+  return Object.fromEntries(
+    Object.entries(stats)
+      .map(([key, value]) => [key, Number(value)])
+      .filter(([, value]) => Number.isFinite(value))
+  );
+};
 
-const normalizeParts = (parts) => {
-  const normalized = emptyPartReferences();
-  if (!parts || typeof parts !== 'object') return normalized;
-  for (const type of PART_TYPES) {
-    normalized[type] = parts[type] == null ? '' : String(parts[type]);
+const normalizePartRef = (value) => {
+  if (value === null || value === undefined || value === '') return '';
+
+  if (typeof value === 'string' || typeof value === 'number') {
+    return String(value);
   }
+
+  if (isObject(value)) {
+    return String(value.id ?? '');
+  }
+
+  return '';
+};
+
+export const normalizeBeyblade = (beyblade = {}) => ({
+  id: String(beyblade?.id || ''),
+  name: String(beyblade?.name || 'Senza nome'),
+  system: String(beyblade?.system || beyblade?.systemId || ''),
+  isFavorite: Boolean(
+    beyblade?.isFavorite ?? beyblade?.favorite
+  ),
+  parts: {
+    blade: normalizePartRef(beyblade?.parts?.blade),
+    ratchet: normalizePartRef(beyblade?.parts?.ratchet),
+    bit: normalizePartRef(beyblade?.parts?.bit),
+    lock_cip: normalizePartRef(beyblade?.parts?.lock_cip),
+    subBlade: normalizePartRef(beyblade?.parts?.subBlade),
+  },
+  stats: normalizeStats(beyblade?.stats),
+  details: isObject(beyblade?.details)
+    ? { ...beyblade.details }
+    : {},
+});
+
+const normalizeLaunch = (launch = {}) => ({
+  ...launch,
+  id: String(launch?.id || ''),
+  power: Number(launch?.power) || 0,
+});
+
+export const normalizeAppData = (data = {}) => {
+  const source = isObject(data) ? data : {};
+
+  const rawBeyblades = Array.isArray(source.beyblades)
+    ? source.beyblades
+    : Array.isArray(source.combos)
+      ? source.combos
+      : [];
+
+  const rawLaunchHistory = Array.isArray(source.launchHistory)
+    ? source.launchHistory
+    : [];
+
+  return {
+    ...source,
+
+    beyblades: rawBeyblades.map(normalizeBeyblade),
+
+    launchHistory: rawLaunchHistory
+      .map(normalizeLaunch)
+      .filter((launch) => Number(launch?.power) <= 90000),
+  };
+};
+
+export const loadAppData = () => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+
+    if (!raw) {
+      return {
+        beyblades: [],
+        launchHistory: [],
+      };
+    }
+
+    return normalizeAppData(JSON.parse(raw));
+  } catch (error) {
+    console.error('Unable to load app data:', error);
+
+    return {
+      beyblades: [],
+      launchHistory: [],
+    };
+  }
+};
+
+export const saveAppData = (data) => {
+  const normalized = normalizeAppData(data);
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(normalized)
+  );
+
   return normalized;
 };
 
-/*
- * Older exports may have an empty system. Since the old record only contains
- * the selected part categories, infer the unique system when possible.
- * If multiple systems have the same slot signature (BX/UX currently do),
- * choose BX deterministically; there is no information in the old record
- * that can distinguish them.
- */
-export const inferSystemForParts = (parts, catalog) => {
-  const selectedTypes = PART_TYPES.filter((type) => Boolean(parts?.[type]));
-  if (!catalog?.systems || !selectedTypes.length) return '';
-
-  const candidates = Object.entries(catalog.systems)
-    .filter(([, system]) => {
-      const enabled = getEnabledPartTypes(system);
-      return enabled.length === selectedTypes.length &&
-        enabled.every((type) => selectedTypes.includes(type));
-    })
-    .map(([id]) => id);
-
-  if (candidates.includes('BX')) return 'BX';
-  return candidates[0] || '';
+export const clearAppData = () => {
+  localStorage.removeItem(STORAGE_KEY);
 };
 
-export const normalizeBeyblade = (beyblade, catalog) => {
-  const parts = normalizeParts(beyblade?.parts);
-  const storedSystem = String(beyblade?.system || beyblade?.systemId || '');
-  // A stored system is authoritative. Older/newer catalogs may change over
-  // time, but a saved Beyblade must retain the system it was created with.
-  const system = storedSystem || inferSystemForParts(parts, catalog);
+export const addLaunch = (launch) => {
+  const data = loadAppData();
+  const normalizedLaunch = normalizeLaunch(launch);
 
-  return {
-    id: String(beyblade?.id ?? ''),
-    name: String(beyblade?.name || 'Nuovo Beyblade'),
-    system,
-    parts,
-    isFavorite: Boolean(beyblade?.isFavorite ?? beyblade?.favorite),
-    createdAt: beyblade?.createdAt || new Date().toISOString(),
-  };
-};
-
-export const defaultAppData = () => ({
-  schemaVersion: DATA_SCHEMA_VERSION,
-  beyblades: [],
-  launchHistory: [],
-});
-
-export const migrateAppData = (input, catalog) => {
-  const base = defaultAppData();
-  if (!input || typeof input !== 'object') return base;
-
-  const legacyBeyblades = Array.isArray(input.beyblades)
-    ? input.beyblades
-    : Array.isArray(input.combos)
-      ? input.combos
-      : [];
-
-  return {
-    ...base,
-    schemaVersion: DATA_SCHEMA_VERSION,
-    beyblades: legacyBeyblades
-      .map((item) => normalizeBeyblade(item, catalog))
-      .filter((item) => item.id),
-    launchHistory: Array.isArray(input.launchHistory) ? input.launchHistory : [],
-  };
-};
-
-export const normalizeAppData = migrateAppData;
-
-export const loadAppData = (catalog) => {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return migrateAppData(JSON.parse(raw), catalog);
-
-    const oldV2 = localStorage.getItem('blade_counter_data_v2');
-    if (oldV2) return migrateAppData(JSON.parse(oldV2), catalog);
-
-    const oldCombos = localStorage.getItem('bey_custom_combos');
-    const oldHistory = localStorage.getItem('bey_launch_history');
-    if (oldCombos || oldHistory) {
-      return migrateAppData({
-        combos: oldCombos ? JSON.parse(oldCombos) : [],
-        launchHistory: oldHistory ? JSON.parse(oldHistory) : [],
-      }, catalog);
-    }
-  } catch (error) {
-    console.warn('Unable to load saved data', error);
+  // Ignora valori anomali/spike oltre 90.000 RPM.
+  if (normalizedLaunch.power > 90000) {
+    return data;
   }
-  return defaultAppData();
+
+  const nextData = {
+    ...data,
+    launchHistory: [
+      ...data.launchHistory,
+      normalizedLaunch,
+    ],
+  };
+
+  saveAppData(nextData);
+
+  return nextData;
 };
 
-export const saveAppData = (data, catalog) => {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(migrateAppData(data, catalog)));
-  } catch (error) {
-    console.warn('Unable to save app data', error);
-  }
+export const deleteLaunch = (launchId) => {
+  const data = loadAppData();
+
+  const nextData = {
+    ...data,
+    launchHistory: data.launchHistory.filter(
+      (launch) => String(launch?.id) !== String(launchId)
+    ),
+  };
+
+  saveAppData(nextData);
+
+  return nextData;
 };

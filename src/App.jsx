@@ -28,7 +28,8 @@ export default function App() {
     launchTimerRef.current = setTimeout(() => {
       const finalPower = maxPowerRef.current;
       maxPowerRef.current = 0;
-      if (finalPower <= 100) return;
+      // Ignore Battle Pass attach/detach spikes and other invalid readings.
+      if (finalPower <= 100 || finalPower > 90000) return;
       const selected = beyblades.find((beyblade) => beyblade.id === selectedComboId);
       const newLaunch = {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
@@ -71,7 +72,7 @@ export default function App() {
         <div className={isConnected ? 'status-dot connected' : 'status-dot'} title={isConnected ? 'Battle Pass connesso' : 'Battle Pass disconnesso'} />
       </header>
       <main className="app-content">
-        {activeTab === 'home' && <LaunchDashboard catalog={catalog} data={data} beyblades={beyblades} selectedComboId={selectedComboId} onSelectCombo={setSelectedComboId} onClearHistory={() => setData((current) => ({ ...current, launchHistory: [] }))} isConnected={isConnected} onConnect={connect} onDisconnect={disconnect} liveRpm={liveRpm} />}
+        {activeTab === 'home' && <LaunchDashboard catalog={catalog} data={data} beyblades={beyblades} selectedComboId={selectedComboId} onSelectCombo={setSelectedComboId} onClearHistory={() => setData((current) => ({ ...current, launchHistory: [] }))} onDeleteLaunch={(id) => setData((current) => ({ ...current, launchHistory: current.launchHistory.filter((launch) => launch.id !== id) }))} isConnected={isConnected} onConnect={connect} onDisconnect={disconnect} liveRpm={liveRpm} />}
         {activeTab === 'lab' && <ComboLab catalog={catalog} beyblades={beyblades} onAddBeyblade={addBeyblade} onToggleFavorite={toggleFavorite} onDelete={deleteBeyblade} />}
         {activeTab === 'operations' && <Operations data={{ ...data, logs }} catalog={catalog} onImport={(imported) => { setData(imported); log('Backup importato.'); }} />}
       </main>
